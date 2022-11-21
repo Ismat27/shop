@@ -1,15 +1,16 @@
 import './App.css';
-// import ProductsList from './components/ProductsList';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ProductsList from './components/ProductsList';
 import NewProduct from './components/NewProduct';
-
-// "proxy": "http://localhost:8000", 
 
 function App() {
   return (
-    <div className="App">
-      {/* <ProductsList /> */}
-      <NewProduct />
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<ProductsList />} />
+        <Route path='/products' element={<NewProduct />} />
+      </Routes>
+    </Router>
   );
 }
 
