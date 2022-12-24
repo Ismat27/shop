@@ -1,5 +1,8 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all .5s;
 }
 .new-product-form {
   width: 90%;

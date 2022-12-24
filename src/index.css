@@ -1,3 +1,11 @@
+:root {
+  --body-bg: #F4F8FE;
+  --btn-primary-bg: #2A6FEA;
+  --component-header-bg: #D4E2FB;
+  --white: #FFFFFF;
+  --black: #000000;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,13 +13,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--body-bg);
 }
 
 img {
   max-width: 100%;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.page-center {
+  max-width: 1200px;
+  margin: auto;
 }
