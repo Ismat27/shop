@@ -24,14 +24,6 @@ const ProductsList = () => {
         })
     }, [])
 
-    if (loading) {
-        return (
-            <h1>
-                loading
-            </h1>
-        )
-    }
-
     if (error) {
         return (
             <h1>
@@ -40,7 +32,15 @@ const ProductsList = () => {
         )
     }
 
-    if (products.length <= 0) {
+    if (loading) {
+        return (
+            <h1>
+                loading
+            </h1>
+        )
+    }
+
+    if (products.length === 0) {
         return (
             <h1>
                 no products
@@ -49,9 +49,11 @@ const ProductsList = () => {
     }
 
   return (
-    <Wrapper>
-        <div>
-            <h1>ProductsList</h1>
+    <Wrapper className=''>
+        <div className='products-container'>
+            <div className='section-header'>
+                <h1 className='category-name'>ProductsList</h1>
+            </div>
             <div className='products'>
                 {
                     products.map((product, index) => {
@@ -59,10 +61,13 @@ const ProductsList = () => {
                         return (
                             <article className='product-card' key={index}>
                                 <img className='product-img' src={image} alt={name} />
-                                <p className='info'>
-                                    <span className='name'>{name}</span>
-                                    <span className='price'>{price}</span>
-                                </p>
+                                <div>
+                                    <p className='info'>
+                                        <span className='name'>{name}</span>
+                                        <span className='price'>N {price}</span>
+                                    </p>
+                                    <button className='add'>Add to bag</button>
+                                </div>
                             </article>
                         )
                     })
@@ -74,10 +79,47 @@ const ProductsList = () => {
 }
 
 const Wrapper = styled.section`
+.section-header {
+    margin-bottom: 2rem;
+}
+.category-name {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 40px;
+    color: var(--black);
+}
+.products-container {
+    width: 90%;
+    margin: auto;
+}
 .products {
     display: grid;
-    gap: 10px;
+    gap: 1rem;
     justify-content: center;
+    background-color: var(--white);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
+    padding: .7rem 1.34rem
+}
+.product-card {
+    max-width: 257px;
+    background: var(--white);
+    padding: .5rem 1rem;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.04);
+}
+.product-card:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25), 0px 0px 6px rgba(0, 0, 0, 0.04);
+}
+.add {
+    background-color: var(--btn-primary-bg);
+    display: block;
+    width: 100%;
+    border: none;
+    padding: .8rem 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    color: var(--white);
 }
 img {
     width: 225px;
@@ -88,20 +130,29 @@ img {
     justify-content: space-between;
     align-items: center;
     text-transform: capitalize;
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 @media (min-width: 576px) {
     .products {
-        grid-template-columns: repeat(2, auto)
+        grid-template-columns: repeat(2, auto);
+        row-gap: 2rem;
+        padding: 1rem;
     }
 }
 @media (min-width: 768px) {
     .products {
-        grid-template-columns: repeat(3, auto)
+        grid-template-columns: repeat(3, auto);
     }
 }
 @media (min-width: 992px) {
+    .products-container {
+        max-width: 1200px;
+    }
     .products {
-        grid-template-columns: repeat(4, auto)
+        grid-template-columns: repeat(4, auto);
+        column-gap: 2rem;
+        padding: .7rem 1rem;
     }
 }
 `
