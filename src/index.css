@@ -23,3 +23,43 @@ img {
   max-width: 1200px;
   margin: auto;
 }
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+.btn {
+  padding: 16px 30px;
+  background-color: var(--btn-primary-bg);
+  color: var(--white);
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menu .first,
+.menu .second,
+.menu .third {
+  width: 20px;
+  height: 4px;
+  border-radius: 20px;
+  background-color: var(--btn-primary-bg);
+}
+
+.menu-open .first {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-open .second {
+  width: 0px;
+}
+.menu-open .third {
+  transform: translateY(-8px) rotate(-45deg);
+}
