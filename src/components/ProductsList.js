@@ -105,6 +105,7 @@ const Wrapper = styled.section`
     background: var(--white);
     padding: .5rem 1rem;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.04);
+    transition: all 0s;
 }
 .product-card:hover {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25), 0px 0px 6px rgba(0, 0, 0, 0.04);
