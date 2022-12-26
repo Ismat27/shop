@@ -22,6 +22,7 @@ const Search = () => {
 
 const Wrapper = styled.div`
 flex-basis: 50%;
+margin-top: 1rem;
 .box {
     display: flex;
 }
@@ -47,6 +48,7 @@ button {
     padding-block: 16px;
     border: none;
     flex-basis: 40%;
+    font-size: 24px;
 }
 @media (min-width: 576px) {
     .inp {
@@ -56,6 +58,10 @@ button {
         flex-basis: 30%;
     }
 }
+@media (min-width: 768px) {
+    margin-top: 0;
+}
+
 `
 
 export default Search

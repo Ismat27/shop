@@ -1,33 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
+
 :root {
   --body-bg: #F4F8FE;
   --btn-primary-bg: #2A6FEA;
   --component-header-bg: #D4E2FB;
   --white: #FFFFFF;
   --black: #000000;
+  --black-text-color: #030710;
+  --icon-color: #AAC5F7;
+  --grey-two: #686A70;
+  --grey-four: #CDCDCF;
+  --grey-five: #E6E6E7;;
+  --grey-six: #F2F3F3;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--body-bg);
 }
 
-img {
-  max-width: 100%;
+h1, h2, h3,
+h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
 }
+
 .page-center {
+  width: 90%;
   max-width: 1200px;
   margin: auto;
+}
+img {
+  max-width: 100%;
 }
 li {
   list-style: none;
 }
 a {
   text-decoration: none;
+}
+svg {
+  color: var(--icon-color);
 }
 .btn {
   padding: 16px 30px;
@@ -62,4 +78,7 @@ a {
 }
 .menu-open .third {
   transform: translateY(-8px) rotate(-45deg);
+}
+.blue {
+  color: var(--btn-primary-bg);
 }
