@@ -50,7 +50,7 @@ const ProductsList = () => {
 
   return (
     <Wrapper className=''>
-        <div className='products-container'>
+        <div className='products-container page-center'>
             <div className='section-header'>
                 <h1 className='category-name'>ProductsList</h1>
             </div>
@@ -79,6 +79,7 @@ const ProductsList = () => {
 }
 
 const Wrapper = styled.section`
+margin-block: 1.5rem 4rem;
 .section-header {
     margin-bottom: 2rem;
 }
@@ -87,10 +88,6 @@ const Wrapper = styled.section`
     font-size: 32px;
     line-height: 40px;
     color: var(--black);
-}
-.products-container {
-    width: 90%;
-    margin: auto;
 }
 .products {
     display: grid;
@@ -142,14 +139,12 @@ img {
     }
 }
 @media (min-width: 768px) {
+    margin-block: 2rem 6rem;
     .products {
         grid-template-columns: repeat(3, auto);
     }
 }
 @media (min-width: 992px) {
-    .products-container {
-        max-width: 1200px;
-    }
     .products {
         grid-template-columns: repeat(4, auto);
         column-gap: 2rem;
