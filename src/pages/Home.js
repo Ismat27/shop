@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import RecomProds from '../components/RecomProds'
 import Hero from '../components/Hero'
 import FlashSales from '../components/FlashSales'
+import NewArrivals from '../components/NewArrivals'
+import TopRank from '../products/TopRank'
+
 const Home = () => {
   return (
         <Wrapper>
@@ -10,6 +13,8 @@ const Home = () => {
                 <Hero />
                 <RecomProds />
                 <FlashSales />
+                <NewArrivals />
+                <TopRank />
             </div>
         </Wrapper>
   )
