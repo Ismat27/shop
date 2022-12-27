@@ -4,13 +4,15 @@ import ProductsList from './components/ProductsList';
 import NewProduct from './components/NewProduct';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Home from './pages/Home';
 
 function App() {
   return (
     <Router>
       <Header />
       <Routes>
-        <Route path='/' element={<ProductsList />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/shop' element={<ProductsList />} />
         <Route path='/products' element={<NewProduct />} />
       </Routes>
       <Footer />

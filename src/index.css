@@ -10,6 +10,7 @@
   --black-text-color: #030710;
   --icon-color: #AAC5F7;
   --grey-two: #686A70;
+  --grey-three: #828282;
   --grey-four: #CDCDCF;
   --grey-five: #E6E6E7;;
   --grey-six: #F2F3F3;
@@ -18,9 +19,8 @@
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   background-color: var(--body-bg);
+  color: var(--black-text-color);
 }
 
 h1, h2, h3,
@@ -32,6 +32,9 @@ h4, h5, h6 {
   width: 90%;
   max-width: 1200px;
   margin: auto;
+}
+.capitalize {
+  text-transform: capitalize;
 }
 img {
   max-width: 100%;
@@ -50,6 +53,7 @@ svg {
   background-color: var(--btn-primary-bg);
   color: var(--white);
   cursor: pointer;
+  border: none;
 }
 
 .menu {
@@ -81,4 +85,7 @@ svg {
 }
 .blue {
   color: var(--btn-primary-bg);
+}
+.black {
+  color: var(--black-text-color);
 }
