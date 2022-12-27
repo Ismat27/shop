@@ -19,8 +19,8 @@ const Header = () => {
         <div className='page-center content'>
             <div className='box-one'>
                 <Link to={'/'}>
-                    <h1>
-                        <span>Smart</span> <span>Mart</span>
+                    <h1 className='logo-text'>
+                        <span className='black'>Smart</span> <span className='blue'>Mart</span>
                     </h1>
                 </Link>
 
@@ -78,19 +78,21 @@ const Header = () => {
 }
 
 const Wrapper = styled.header`
+position: sticky;
+top: 0;
+z-index: 1000;
 padding-block: 1rem 2rem;
 background-color: var(--white);
-.content {
-    width: 90%;
-    margin: auto;
+.logo-text {
+    font-size: 1.2rem;
 }
 .box-one, .box-two {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .box-two {
     gap: 2rem;
-    align-items: center;
 }
 .idk {
     display: flex;
@@ -120,6 +122,11 @@ background-color: var(--white);
     svg {
         color: #AAC5F7;
         font-size: 40px;
+    }
+}
+@media (min-width: 576px) {
+    .logo-text {
+        font-size: 2rem;
     }
 }
 @media (min-width: 768px) {
