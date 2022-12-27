@@ -2,12 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import RecomProds from '../components/RecomProds'
 import Hero from '../components/Hero'
+import FlashSales from '../components/FlashSales'
 const Home = () => {
   return (
         <Wrapper>
             <div className='page-center'>
                 <Hero />
                 <RecomProds />
+                <FlashSales />
             </div>
         </Wrapper>
   )
