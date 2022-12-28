@@ -5,6 +5,7 @@ import Hero from '../components/Hero'
 import FlashSales from '../components/FlashSales'
 import NewArrivals from '../components/NewArrivals'
 import TopRank from '../products/TopRank'
+import ClientReviews from '../components/ClientReviews'
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
                 <FlashSales />
                 <NewArrivals />
                 <TopRank />
+                <ClientReviews />
             </div>
         </Wrapper>
   )
