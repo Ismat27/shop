@@ -125,6 +125,7 @@ input {
 }
 .icon {
     font-size: 20px;
+    padding-top: .65rem;
 }
 input {
     padding-block: 16px;
