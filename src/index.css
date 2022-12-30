@@ -4,6 +4,7 @@
 :root {
   --body-bg: #F4F8FE;
   --btn-primary-bg: #2A6FEA;
+  --secondary-color: #6832A5;
   --component-header-bg: #D4E2FB;
   --white: #FFFFFF;
   --black: #000000;
@@ -113,6 +114,17 @@ svg {
 
 .products-group-two {
   justify-content: center;
+}
+
+/* sign up and log in page */
+
+.auth-container {
+  width: 90%;
+  margin: auto;
+  padding: 1rem;
+  background: var(--white);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
 }
 
 @media (min-width: 576px) {
