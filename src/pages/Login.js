@@ -1,11 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import useLogin from '../hooks/useLogin'
 
 const Login = () => {
 
+    const {
+        email, setEmail,
+        password, setPassword,
+        emailError, passwordError,
+        login
+    } = useLogin()
+
     const submitForm = (event) => {
         event.preventDefault()
+        login()
     }
 
   return (
@@ -16,23 +25,27 @@ const Login = () => {
                 <div className='field-container'>
                     <div className='field'>
                         <label htmlFor='email'>Email Address<span>*</span></label>
-                        <div className='input-box'>
+                        <div className={`${emailError?'error input-box':'input-box'}`}>
                             <input 
                                 type={'email'}
                                 name='email'
                                 id='email'
                                 placeholder='example@gmail.com'
+                                value={email}
+                                onChange={e=>setEmail(e.target.value)}
                             />
                         </div>
                     </div>
                     <div className='field'>
                         <label htmlFor='email'>Password<span>*</span></label>
-                        <div className='input-box'>
+                        <div className={`${passwordError?'error input-box':'input-box'}`}>
                             <input 
                                 type={'password'}
                                 name='password'
                                 id='password'
                                 placeholder='enter password'
+                                value={password}
+                                onChange={e=>setPassword(e.target.value)}
                             />
                         </div>
                     </div>
@@ -81,6 +94,9 @@ margin-block: 7.5vh;
     border: 1px solid var(--grey-four);
     padding: 0 1rem;
     margin-top: .3rem;
+}
+.input-box.error {
+    border: 1px solid red;
 }
 label {
     font-weight: 600;
