@@ -1,10 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import useRegisterHook from '../hooks/useRegisterHook'
 
 const Register = () => {
 
+const { 
+    lastName, setLastname,
+    firstName, setFirstname,
+    phone, setPhone,
+    email, setEmail,
+    password, setPassword,
+    passwordTwo, setPasswordTwo,
+    register
+} = useRegisterHook()
+
     const submitForm = (event) => {
+        register()
         event.preventDefault()
     }
 
@@ -21,6 +33,8 @@ const Register = () => {
                                 id='firstName'
                                 name='firstName' 
                                 placeholder='enter your first name'
+                                value={firstName}
+                                onChange={event => setFirstname(event.target.value)}
                             />
                         </div>
                     </div>
@@ -31,6 +45,8 @@ const Register = () => {
                                 id='lastName'
                                 name='lastName'
                                 placeholder='enter your last name'
+                                value={lastName}
+                                onChange={(e)=>setLastname(e.target.value)}
 
                             />
                         </div>
@@ -43,6 +59,8 @@ const Register = () => {
                                 name='email'
                                 placeholder='example@gmail.com'
                                 type={'email'}
+                                value={email}
+                                onChange={e=>setEmail(e.target.value)}
                             />
                         </div>
                     </div>
@@ -54,6 +72,8 @@ const Register = () => {
                                 name='phone'
                                 placeholder='enter phone number'
                                 type={'tel'}
+                                value={phone}
+                                onChange={e=>setPhone(e.target.value)}
                             />
                         </div>
                     </div>
@@ -65,6 +85,8 @@ const Register = () => {
                                 name='password'
                                 placeholder='enter password'
                                 type={'password'}
+                                value={password}
+                                onChange={e=>setPassword(e.target.value)}
                             />
                         </div>
                     </div>
@@ -76,6 +98,8 @@ const Register = () => {
                                 name='passwordTwo'
                                 placeholder='confirm password'
                                 type={'password'}
+                                value={passwordTwo}
+                                onChange={e=>setPasswordTwo(e.target.value)}
                             />
                         </div>
                     </div>
