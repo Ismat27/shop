@@ -30,8 +30,27 @@ const Cart = () => {
                 <h2 className='capitalize comp-header'>
                     cart summary
                 </h2>
+                <div className='summary-box'>
+                    <p className='bold'>
+                        <span>Sub total</span>
+                        <span>$2,000</span>
+                    </p>
+                    <p className='bold'>
+                        <span>Delivery</span>
+                        <span>--</span>
+                    </p>
+                    <p className='bold'>
+                        <span>Total</span>
+                        <span>$2,000</span>
+                    </p>
+                </div>
             </section>
-            <section className='other'></section>
+            <section className='other'>
+                <button className='capitalize btn checkout-btn'>Checkout ($3,000) </button>
+                <p>
+                    <Link to={'/shop'} className='bold blue'>Continue Shopping</Link>
+                </p>
+            </section>
         </main>
     </Wrapper>
   )
@@ -47,6 +66,7 @@ h1 {
 h2 {
     font-size: 16px;
     font-weight: 600;
+    border-radius: 0;
 }
 main {
     background: #FFFFFF;
@@ -62,7 +82,28 @@ main {
 .cart-items {
     display: grid;
     row-gap: 1rem;
-    padding: 1rem .2rem;
+    padding: 1rem 12px;
+}
+.summary-box {
+    padding: 12px 16px; 
+    display: grid;
+    row-gap: 1rem;
+    p {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+.other {
+    p {
+        text-align: center;
+        padding-block: 2rem;
+    }
+}
+.checkout-btn {
+    width: 100%;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 1rem;
 }
 @media (min-width: 576px) {
     h1 {
@@ -93,7 +134,7 @@ main {
     }
 }
 @media (min-width: 992px) {
-    h2 {
+    h2, .checkout-btn {
         font-size: 1.5rem;
     }
     .products-section {

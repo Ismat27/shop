@@ -57,7 +57,9 @@ svg {
   cursor: pointer;
   border: none;
 }
-
+.bold {
+  font-weight: 600;
+}
 .menu {
   display: flex;
   flex-direction: column;

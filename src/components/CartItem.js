@@ -21,9 +21,11 @@ const CartItem = ({data}) => {
                 <span>{qty || 2}</span>
                 <button className='btn'>+</button>
             </div>
-            <div className='price'>
-                <p className='sale-price'>${salePrice || 450}</p>
-                <p className='stock-price'>${stockPrice || 500}</p>
+            <div>
+                <div className='price'>
+                    <p className='sale-price'>${salePrice || 450}</p>
+                    <p className='stock-price'>${stockPrice || 500}</p>
+                </div>
                 <button className='btn remove-btn'>Remove -</button>
             </div>
         </Wrapper>
@@ -47,6 +49,7 @@ grid-template-columns: 40% 30% 30%;
     display: flex;
     align-items: center;
     gap: .5rem;
+    flex-direction: column-reverse;
     button {
         border-radius: 3px;
         padding: 4px;
@@ -58,14 +61,16 @@ grid-template-columns: 40% 30% 30%;
     }
 }
 .remove-btn {
-    background: #FFFFFF;
+    background-color: var(--white);
     border: 2px solid #2A6FEA;
     color: #2A6FEA;
     padding: 8px 4px;
     font-weight: 600;
     font-size: 14px;
+    max-width: 200px;
 }
 .price {
+    margin-bottom: 1rem;
     .sale-price {
         font-size: 1.5rem;
         font-weight: 600;
@@ -83,6 +88,7 @@ grid-template-columns: 40% 30% 30%;
     }
     .qty {
         gap: 1rem;
+        flex-direction: row;
         button {
 
         }
