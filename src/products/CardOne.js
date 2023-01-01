@@ -23,7 +23,6 @@ const CardOne = ({image,  children }) => {
 
 const Wrapper = styled.div`
 position: relative;
-background-color: var(--white);
 box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.04);
 border-radius: 4px;
 padding: .5rem;

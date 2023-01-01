@@ -39,7 +39,6 @@ const RecomProdCard = ({data}) => {
 
 const Wrapper = styled.article`
 position: relative;
-background-color: var(--white);
 box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.04);
 border-radius: 4px;
 max-width: 380px;

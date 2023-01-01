@@ -9,7 +9,7 @@ const CartItem = ({data}) => {
         qty
     } = data
     return (
-        <Wrapper>
+        <Wrapper className=''>
             <div className='product'>
                 <img src={image || laptop} />
                 <div>
@@ -34,7 +34,6 @@ const CartItem = ({data}) => {
 
 const Wrapper = styled.article`
 padding: 10px 0px;
-background-color: var(--white);
 box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.04);
 display: grid;
 align-items: start;

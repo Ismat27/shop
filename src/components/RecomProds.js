@@ -9,7 +9,7 @@ const RecomProds = () => {
         <CompHeader 
             title={'recommended'}
         />
-        <div className='products'>
+        <div className='bg-white products'>
             <RecomProdCard 
                 data={{}}
             />
@@ -38,7 +38,6 @@ const Wrapper = styled.div`
     display: grid;
     gap: 1rem;
     justify-content: center;
-    background-color: var(--white);
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
     padding: .7rem 1.34rem;
 }

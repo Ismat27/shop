@@ -15,7 +15,7 @@ const Header = () => {
     }
 
     return (
-    <Wrapper>
+    <Wrapper className='bg-white'>
         <div className='page-center content'>
             <div className='box-one'>
                 <Link to={'/'}>
@@ -82,7 +82,6 @@ position: sticky;
 top: 0;
 z-index: 1000;
 padding-block: 1rem 2rem;
-background-color: var(--white);
 .logo-text {
     font-size: 1.2rem;
 }

@@ -60,6 +60,9 @@ svg {
 .bold {
   font-weight: 600;
 }
+.bg-white {
+  background-color: var(--white);
+}
 .menu {
   display: flex;
   flex-direction: column;

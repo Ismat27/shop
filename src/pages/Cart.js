@@ -10,7 +10,7 @@ const Cart = () => {
             <Link to={'/'}>Home</Link>/Cart
         </p>
         <h1>Cart</h1>
-        <main>
+        <main className='bg-white'>
             <section className='products-section'>
                 <h2 className='capitalize comp-header'>
                     <span>product</span>
@@ -69,7 +69,6 @@ h2 {
     border-radius: 0;
 }
 main {
-    background: #FFFFFF;
     margin-top: 1rem;
 }
 .products-section {
