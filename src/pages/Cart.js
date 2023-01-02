@@ -46,7 +46,7 @@ const Cart = () => {
                 </div>
             </section>
             <section className='other'>
-                <button className='capitalize btn checkout-btn'>Checkout ($3,000) </button>
+                <Link to={'/checkout'} className='capitalize btn checkout-btn'>Checkout ($3,000) </Link>
                 <p>
                     <Link to={'/shop'} className='bold blue'>Continue Shopping</Link>
                 </p>
@@ -99,8 +99,9 @@ main {
     }
 }
 .checkout-btn {
-    width: 100%;
+    display: block;
     font-family: 'Montserrat';
+    text-align: center;
     font-weight: 600;
     font-size: 1rem;
 }
