@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { useProductContext } from '../contexts/ProductContext'
 
 const Shop = () => {
 
-    const [products, setProducts] = useState([])
+    const {current_products} = useProductContext()
 
-    if (products.length === 0) {
+    if (current_products.length === 0) {
         return (
             <Wrapper>
                 <div className='no-products'>
@@ -25,11 +26,13 @@ const Shop = () => {
             </div>
             <div className='bg-white products'>
                 {
-                    products.map((product, index) => {
-                        const {name, price, image} = product
+                    current_products.map((product, index) => {
+                        const {name, price, image, id} = product
                         return (
                             <article className='product-card' key={index}>
-                                <img className='product-img' src={image} alt={name} />
+                                <Link to={`/products/${id}`}>
+                                    <img className='product-img' src={image} alt={name} />
+                                </Link>
                                 <div>
                                     <p className='info'>
                                         <span className='name'>{name}</span>
