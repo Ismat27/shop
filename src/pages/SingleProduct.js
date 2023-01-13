@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { HiShoppingCart } from 'react-icons/hi'
 import { useParams } from 'react-router-dom'
@@ -6,9 +6,14 @@ import { useProductContext } from '../contexts/ProductContext'
 
 const SingleProduct = () => {
     const {productId} = useParams()
-    const {current_products} = useProductContext()
-    const product = current_products.find(item => item.id == productId)
-    const { name, image, desc, id, price, } = product
+    const {
+        fetchSingleProduct,
+        single_product_loading,
+        single_product_loading_error,
+        single_product:product
+    } = useProductContext()
+
+    const { name, image, desc, price, } = product
     const [quantity, setQuantity] = useState(1)
     const increaseQuantity = () => {
         setQuantity(prev => {
@@ -26,40 +31,60 @@ const SingleProduct = () => {
             return prev - 1
         })
     }
-    return (
-    <Wrapper>
-        <article className='bg-white info'>
-            <div className='imgs-box'>
-                <img className='display-img' src={image} />
-                <div className='other-imgs'>
+    useEffect(() => {
+        fetchSingleProduct(productId)
+    }, [productId])
 
-                </div>
-            </div>
-            <div className='details'>
-                <h1 className='bold capitalize product-name'>{desc || name}</h1>
-                <p className='rating-review'>
-                    <span className='bold star'></span>
-                    <span className='review'></span>
-                </p>
-                <p className='prices'>
-                    <span className='bold sale-price'>{price}</span>
-                    <span className='stock-price'></span>
-                </p>
-                <div className='qty-toggle'>
-                    <p className='bold'>Quantity</p>
-                    <div className='toggle-btns'>
-                        <button onClick={decreaseQuantity} className='bold toggle-btn'>-</button>
-                        <span className='bold qty'>{quantity}</span>
-                        <button onClick={increaseQuantity} className='bold toggle-btn'>+</button>
+    if (single_product_loading) {
+        return (
+            <Wrapper>
+                <h3>product loading...</h3>
+            </Wrapper>
+        )
+    }
+
+    if (single_product_loading_error) {
+        return (
+            <Wrapper>
+                <h3>unable to fetch product</h3>
+            </Wrapper>
+        )
+    }
+
+    return (
+        <Wrapper>
+            <article className='bg-white info'>
+                <div className='imgs-box'>
+                    <img className='display-img' src={image} />
+                    <div className='other-imgs'>
+
                     </div>
                 </div>
-                <button className='btn cart-btn'>
-                    <HiShoppingCart />
-                    Add to Cart
-                </button>
-            </div>
-        </article>
-    </Wrapper>
+                <div className='details'>
+                    <h1 className='bold capitalize product-name'>{desc || name}</h1>
+                    <p className='rating-review'>
+                        <span className='bold star'></span>
+                        <span className='review'></span>
+                    </p>
+                    <p className='prices'>
+                        <span className='bold sale-price'>{price}</span>
+                        <span className='stock-price'></span>
+                    </p>
+                    <div className='qty-toggle'>
+                        <p className='bold'>Quantity</p>
+                        <div className='toggle-btns'>
+                            <button onClick={decreaseQuantity} className='bold toggle-btn'>-</button>
+                            <span className='bold qty'>{quantity}</span>
+                            <button onClick={increaseQuantity} className='bold toggle-btn'>+</button>
+                        </div>
+                    </div>
+                    <button className='btn cart-btn'>
+                        <HiShoppingCart />
+                        Add to Cart
+                    </button>
+                </div>
+            </article>
+        </Wrapper>
     )
 }
 
