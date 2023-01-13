@@ -3,7 +3,10 @@ import React, { useCallback, useContext, useEffect, useReducer } from 'react'
 import { 
     FETCH_PRODUCTS_START, 
     FETCH_PRODUCTS_FAILED,
-    FETCH_PRODUCTS_SUCCESS
+    FETCH_PRODUCTS_SUCCESS,
+    FETCH_SINGLE_PRODUCT_START, 
+    FETCH_SINGLE_PRODUCT_FAILED,
+    FETCH_SINGLE_PRODUCT_SUCCESS
 } from './ProductReducer'
 import reducer from './ProductReducer'
 const Context = React.createContext()
@@ -34,13 +37,26 @@ const ProductContext = ({children}) => {
         })
     }, [])
 
+    const fetchSingleProduct = (productId) => {
+        dispatch({type: FETCH_SINGLE_PRODUCT_START})
+        axios.get(`http://localhost:8000/api/products/${productId}/`)
+        .then(response => {
+            const { data } = response
+            dispatch({type:FETCH_SINGLE_PRODUCT_SUCCESS, payload:data})
+        })
+        .catch(() => {
+            dispatch({type: FETCH_SINGLE_PRODUCT_FAILED})
+        })
+    }
+
     useEffect(() => {
         fetchProducts()
     }, [fetchProducts])
 
     return (
         <Context.Provider value={{
-            ...state
+            ...state,
+            fetchSingleProduct
         }}>
             {children}
         </Context.Provider>
