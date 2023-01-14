@@ -6,8 +6,26 @@ const DECREASE_ITEM = 'DECREASE_ITEM'
 const INCREASE_ITEM = 'INCREASE_ITEM'
 
 const reducer = (state, action) => {
-    return {
-        ...state
+    if (action.type === ADD_TO_CART) {
+        const {productId, product, quantity} = action.payload;
+        const tempProduct = state.cartItems.find(item => item.id === productId)
+        if (tempProduct) {
+            return {
+                ...state
+            }
+        }
+        else {
+            const newItem = {
+                ...product,
+                quantity,
+            }
+            return {
+                ...state,
+                cartItems: [newItem, ...state.cartItems],
+                total_quantity: state.total_quantity + quantity,
+                total_amount: state.total_amount + Number(product.price) * quantity,
+            }
+        }
     }
 }
 
