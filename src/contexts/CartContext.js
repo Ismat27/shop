@@ -19,10 +19,16 @@ const initialState = {
 
 const CartContext = ({children}) => {
     const [state, dispatch] = useReducer(reducer, initialState)
+
+    const addToCart = (productId, product, quantity=1) => {
+        dispatch({type: ADD_TO_CART, payload: {productId, product, quantity}})
+    }
+
     return (
         <Context.Provider
             value={{
-                ...state
+                ...state,
+                addToCart
             }}
         >
             {children}
