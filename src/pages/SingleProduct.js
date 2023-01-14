@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { HiShoppingCart } from 'react-icons/hi'
 import { useParams } from 'react-router-dom'
 import { useProductContext } from '../contexts/ProductContext'
+import { FiMinus, FiPlus } from 'react-icons/fi'
+import { BsCurrencyDollar } from 'react-icons/bs'
 
 const SingleProduct = () => {
     const {productId} = useParams()
@@ -33,7 +35,7 @@ const SingleProduct = () => {
     }
     useEffect(() => {
         fetchSingleProduct(productId)
-    }, [productId])
+    }, [productId, fetchSingleProduct])
 
     if (single_product_loading) {
         return (
@@ -53,51 +55,79 @@ const SingleProduct = () => {
 
     return (
         <Wrapper>
-            <article className='bg-white info'>
-                <div className='imgs-box'>
-                    <img className='display-img' src={image} />
-                    <div className='other-imgs'>
+            <div className='page-center'>
+                <article className='bg-white info'>
+                    <div className='imgs-box'>
+                        <img className='display-img' alt={name} src={image} />
+                        <div className='other-imgs'>
 
-                    </div>
-                </div>
-                <div className='details'>
-                    <h1 className='bold capitalize product-name'>{desc || name}</h1>
-                    <p className='rating-review'>
-                        <span className='bold star'></span>
-                        <span className='review'></span>
-                    </p>
-                    <p className='prices'>
-                        <span className='bold sale-price'>{price}</span>
-                        <span className='stock-price'></span>
-                    </p>
-                    <div className='qty-toggle'>
-                        <p className='bold'>Quantity</p>
-                        <div className='toggle-btns'>
-                            <button onClick={decreaseQuantity} className='bold toggle-btn'>-</button>
-                            <span className='bold qty'>{quantity}</span>
-                            <button onClick={increaseQuantity} className='bold toggle-btn'>+</button>
                         </div>
                     </div>
-                    <button className='btn cart-btn'>
-                        <HiShoppingCart />
-                        Add to Cart
-                    </button>
-                </div>
-            </article>
+                    <div className='details'>
+                        <h1 className='bold capitalize product-name'>{desc || name}</h1>
+                        <p className='rating-review'>
+                            <span className='bold star'></span>
+                            <span className='review'></span>
+                        </p>
+                        <p className='prices'>
+                            <span className='bold sale-price'><BsCurrencyDollar />{price}</span>
+                            <span className='stock-price'></span>
+                        </p>
+                        <div className='qty-toggle'>
+                            <p className='bold'>Quantity</p>
+                            <div className='toggle-btns'>
+                                <button id='decrease-button' title='decrease' onClick={decreaseQuantity} className='bold toggle-btn'><FiMinus className='bold' /></button>
+                                <span className='bold qty'>{quantity}</span>
+                                <button id='increase-button' title='increase' onClick={increaseQuantity} className='bold toggle-btn'><FiPlus className='bold' /></button>
+                            </div>
+                        </div>
+                        <button className='btn cart-btn'>
+                            <HiShoppingCart />
+                            Add to Cart
+                        </button>
+                    </div>
+                </article>
+            </div>
         </Wrapper>
     )
 }
 
 const Wrapper = styled.section`
+margin-top: 3rem;
+margin-bottom: 5rem;
 .info {
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
     padding: 1rem;
+    max-width: 880px;
 }
 .imgs-box {
     background-color: #FAFAFA;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.04);
     padding: 1rem;
     max-width: 394px;
+    width: 100%;
+    text-align: center;
+}
+.details {
+  width: 100%;
+}
+.rating-review {
+    margin-block: 1rem;
+}
+.prices {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    span {
+        display: flex;
+        align-items: center;
+    }
+}
+.sale-price {
+    svg {
+        font-weight: bold;
+        color: black;
+    }
 }
 .toggle-btns {
     display: flex;
@@ -106,12 +136,21 @@ const Wrapper = styled.section`
     margin-block: .5rem .8rem;
 }
 .toggle-btn {
-    padding: 2px 8px;
+    display: grid;
+    place-items: center;
     width: 40px;
     height: 44px;
     background-color: var(--component-header-bg);
     color: var(--black-text-color);
     border: none;
+    cursor: pointer;
+    svg {
+        font-size: 1.2rem;
+        color: var(--black-text-color);
+    }
+}
+.qty {
+    font-size: 1.5rem;
 }
 .cart-btn {
     display: flex;
@@ -125,6 +164,14 @@ const Wrapper = styled.section`
         color: white;
     }
 }
+@media (min-width: 768px) {
+    .info {
+        display: flex;
+        gap: .5rem;
+    }
+    .product-name, .sale-price, .qty {
+        font-size: 1.5rem;
+    }
+}
 `
-
 export default SingleProduct
