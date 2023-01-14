@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useProductContext } from '../contexts/ProductContext'
+import { useCartContext } from '../contexts/CartContext'
 
 const Shop = () => {
 
+    const {addToCart} = useCartContext()
     const {current_products} = useProductContext()
 
     if (current_products.length === 0) {
@@ -38,7 +40,12 @@ const Shop = () => {
                                         <span className='name'>{name}</span>
                                         <span className='price'>N {price}</span>
                                     </p>
-                                    <button className='add'>Add to bag</button>
+                                    <button 
+                                        className='add'
+                                        onClick={() => addToCart(id, product)}
+                                    >
+                                    Add to bag
+                                    </button>
                                 </div>
                             </article>
                         )
