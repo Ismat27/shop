@@ -5,8 +5,10 @@ import { useParams } from 'react-router-dom'
 import { useProductContext } from '../contexts/ProductContext'
 import { FiMinus, FiPlus } from 'react-icons/fi'
 import { BsCurrencyDollar } from 'react-icons/bs'
+import { useCartContext } from '../contexts/CartContext'
 
 const SingleProduct = () => {
+    const {addToCart} = useCartContext()
     const {productId} = useParams()
     const {
         fetchSingleProduct,
@@ -81,7 +83,10 @@ const SingleProduct = () => {
                                 <button id='increase-button' title='increase' onClick={increaseQuantity} className='bold toggle-btn'><FiPlus className='bold' /></button>
                             </div>
                         </div>
-                        <button className='btn cart-btn'>
+                        <button 
+                            className='btn cart-btn'
+                            onClick={() => addToCart(productId, product, quantity)}
+                        >
                             <HiShoppingCart />
                             Add to Cart
                         </button>
