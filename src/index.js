@@ -5,14 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthContext from './contexts/AuthContext';
 import ProductContext from './contexts/ProductContext';
+import CartContext from './contexts/CartContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthContext>
-      <ProductContext>
-        <App />
-      </ProductContext>
+      <CartContext>
+        <ProductContext>
+          <App />
+        </ProductContext>
+      </CartContext>
     </AuthContext>
   </React.StrictMode>
 );
