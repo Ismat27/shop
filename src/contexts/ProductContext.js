@@ -37,7 +37,7 @@ const ProductContext = ({children}) => {
         })
     }, [])
 
-    const fetchSingleProduct = (productId) => {
+    const fetchSingleProduct = useCallback((productId) => {
         dispatch({type: FETCH_SINGLE_PRODUCT_START})
         axios.get(`http://localhost:8000/api/products/${productId}/`)
         .then(response => {
@@ -47,7 +47,7 @@ const ProductContext = ({children}) => {
         .catch(() => {
             dispatch({type: FETCH_SINGLE_PRODUCT_FAILED})
         })
-    }
+    }, [])
 
     useEffect(() => {
         fetchProducts()
