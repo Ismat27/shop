@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Search from './Search'
-import { HiShoppingCart, HiHeart } from 'react-icons/hi'
+import { HiShoppingCart } from 'react-icons/hi'
 import Hamburger from './Hamburger'
 
 
@@ -34,14 +34,6 @@ const Header = () => {
                                 </span>
                             </Link>
                         </li>
-                        <li className='cart-nav'>
-                            <Link className='nav-link' to={'/wishlist'}>
-                                <span className='pop-up'>
-                                    <span>24</span>
-                                    <HiHeart />
-                                </span>
-                            </Link>
-                        </li>
                     </ul>
                     <Hamburger 
                         isOpen={menuOpen}
@@ -60,15 +52,6 @@ const Header = () => {
                             <span>5</span>
                         </span>
                         cart
-                    </Link>
-                </li>
-                <li className='cart-nav'>
-                    <Link className='nav-link' to={'/wishlist'}>
-                        <span className='pop-up'>
-                            <span>24</span>
-                            <HiHeart />
-                        </span>
-                        wishlist
                     </Link>
                 </li>
             </ul>
