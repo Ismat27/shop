@@ -4,9 +4,11 @@ import styled from 'styled-components'
 import Search from './Search'
 import { HiShoppingCart } from 'react-icons/hi'
 import Hamburger from './Hamburger'
-
+import { useCartContext } from '../contexts/CartContext'
 
 const Header = () => {
+
+    const {total_quantity} = useCartContext()
 
     const [menuOpen, setMenuOpen] = useState(false)
 
@@ -30,7 +32,7 @@ const Header = () => {
                             <Link className='nav-link' to={'/cart'}>
                                 <span className='pop-up'>
                                     <HiShoppingCart />
-                                    <span>5</span>
+                                    <span>{total_quantity}</span>
                                 </span>
                             </Link>
                         </li>
