@@ -2,12 +2,24 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import CartItem from '../components/CartItem'
+import { useCartContext } from '../contexts/CartContext'
 
 const Cart = () => {
+    const {cartItems,total_quantity, total_amount} = useCartContext()
+
+    if (cartItems.length === 0) {
+        return (
+            <Wrapper className='page-center'>
+                <h3 className='capitalize'>your cart is empty</h3>
+                <Link className='blue' to={'/shop'}>shop here</Link>
+            </Wrapper>
+        )
+    }
+
   return (
     <Wrapper className='page-center'>
         <p>
-            <Link to={'/'}>Home</Link>/Cart
+            <Link className='blue' to={'/'}>Home</Link>/Cart
         </p>
         <h1>Cart</h1>
         <main className='bg-white'>
@@ -18,12 +30,16 @@ const Cart = () => {
                     <span>price</span>
                 </h2>
                 <div className='cart-items'>
-                    <CartItem 
-                        data={{}}
-                    />
-                    <CartItem 
-                        data={{}}
-                    />
+                    {
+                        cartItems.map((item) => {
+                            return (
+                                <CartItem 
+                                    key={item.id}
+                                    data={item}
+                                />
+                            )
+                        })
+                    }
                 </div>
             </section>
             <section className='summary-section'>
@@ -33,7 +49,7 @@ const Cart = () => {
                 <div className='summary-box'>
                     <p className='bold'>
                         <span>Sub total</span>
-                        <span>$2,000</span>
+                        <span>${total_amount}</span>
                     </p>
                     <p className='bold'>
                         <span>Delivery</span>
@@ -41,12 +57,12 @@ const Cart = () => {
                     </p>
                     <p className='bold'>
                         <span>Total</span>
-                        <span>$2,000</span>
+                        <span>${total_amount}</span>
                     </p>
                 </div>
             </section>
             <section className='other'>
-                <Link to={'/checkout'} className='capitalize btn checkout-btn'>Checkout ($3,000) </Link>
+                <Link to={'/checkout'} className='capitalize btn checkout-btn'>Checkout (${total_amount}) </Link>
                 <p>
                     <Link to={'/shop'} className='bold blue'>Continue Shopping</Link>
                 </p>
