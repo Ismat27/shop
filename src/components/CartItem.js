@@ -6,24 +6,26 @@ const CartItem = ({data}) => {
     const {
         image, name,
         salePrice, stockPrice,
-        qty
+        qty,
+        quantity,
+        price
     } = data
     return (
         <Wrapper className=''>
             <div className='product'>
                 <img src={image || laptop} />
                 <div>
-                    <h3 className='prod-name'>{name || 'Name of Laptop and few specs'}</h3>
+                    <h3 className='capitalize prod-name'>{name || 'Name of Laptop and few specs'}</h3>
                 </div>
             </div>
             <div className='qty'>
                 <button className='btn'>-</button>
-                <span>{qty || 2}</span>
+                <span>{quantity || 2}</span>
                 <button className='btn'>+</button>
             </div>
             <div>
                 <div className='price'>
-                    <p className='sale-price'>${salePrice || 450}</p>
+                    <p className='sale-price'>${price || 450}</p>
                     <p className='stock-price'>${stockPrice || 500}</p>
                 </div>
                 <button className='btn remove-btn'>Remove -</button>
