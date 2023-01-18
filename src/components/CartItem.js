@@ -5,7 +5,11 @@ import { formatPrice } from '../helpers'
 import { useCartContext } from '../contexts/CartContext'
 
 const CartItem = ({data}) => {
-    const { removeFromCart } = useCartContext()
+    const {
+        removeFromCart,
+        decreaseItem,
+        increaseItem
+    } = useCartContext()
     const {
         image, name,
         salePrice, stockPrice,
@@ -23,9 +27,9 @@ const CartItem = ({data}) => {
                 </div>
             </div>
             <div className='qty'>
-                <button className='btn'>-</button>
+                <button onClick={() => decreaseItem(id)} className='btn'>-</button>
                 <span>{quantity || 2}</span>
-                <button className='btn'>+</button>
+                <button onClick={() => increaseItem(id)} className='btn'>+</button>
             </div>
             <div>
                 <div className='price'>

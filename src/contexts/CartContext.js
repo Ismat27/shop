@@ -37,6 +37,14 @@ const CartContext = ({children}) => {
         dispatch({type: REMOVE_FROM_CART, payload: productId})
     }
 
+    const decreaseItem = (itemId) => {
+        dispatch({type: DECREASE_ITEM, payload: itemId})
+    }
+
+    const increaseItem = (itemId) => {
+        dispatch({type: INCREASE_ITEM, payload: itemId})
+    }
+
     useEffect(()=>{
         localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
         dispatch({type: COUNT_TOTALS})
@@ -48,6 +56,8 @@ const CartContext = ({children}) => {
                 ...state,
                 addToCart,
                 removeFromCart,
+                decreaseItem,
+                increaseItem
             }}
         >
             {children}

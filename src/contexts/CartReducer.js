@@ -62,6 +62,43 @@ const reducer = (state, action) => {
             cartItems: tempItems
         }
     }
+    if (action.type === DECREASE_ITEM) {
+        const tempItems = state.cartItems.map(item => {
+            if (item.id === action.payload) {
+                let newQuantity = item.quantity - 1
+                return {
+                    ...item,
+                    quantity: newQuantity > 0? newQuantity : 1
+                }
+            }
+            else {
+                return {...item}
+            }
+        })
+        return {
+            ...state,
+            cartItems: tempItems
+        }
+    }
+    if (action.type === INCREASE_ITEM) {
+        const tempItems = state.cartItems.map(item => {
+            if (item.id === action.payload) {
+                // new quantity to be compared with number of items in stock
+                let newQuantity = item.quantity + 1
+                return {
+                    ...item,
+                    quantity: newQuantity
+                }
+            }
+            else {
+                return {...item}
+            }
+        })
+        return {
+            ...state,
+            cartItems: tempItems
+        }
+    }
 }
 
 export {
