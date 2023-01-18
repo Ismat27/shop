@@ -4,10 +4,11 @@ const CLEAR_CART = 'CLEAR_CART'
 const CHECKOUT_CART = 'CHECKOUT_CART'
 const DECREASE_ITEM = 'DECREASE_ITEM'
 const INCREASE_ITEM = 'INCREASE_ITEM'
+const COUNT_TOTALS = 'COUNT_TOTALS'
 
 const reducer = (state, action) => {
     if (action.type === ADD_TO_CART) {
-        const {productId, product, quantity} = action.payload;
+        const { product, quantity} = action.payload;
         const tempProduct = state.cartItems.find(item => item.id === product.id)
         if (tempProduct) {
             const tempItems = state.cartItems.map(item => {
@@ -26,8 +27,6 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 cartItems: tempItems,
-                total_quantity: state.total_quantity + quantity,
-                total_amount: state.total_amount + Number(product.price) * quantity,
             }
         }
         else {
@@ -38,9 +37,22 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 cartItems: [newItem, ...state.cartItems],
-                total_quantity: state.total_quantity + quantity,
-                total_amount: state.total_amount + Number(product.price) * quantity,
             }
+        }
+    }
+    if (action.type === COUNT_TOTALS) {
+        const total_quantity = state.cartItems.reduce((sum, item) => {
+            sum += item.quantity
+            return sum
+        }, 0)
+        const total_amount = state.cartItems.reduce((sum, item) => {
+            sum += item.quantity * item.price
+            return sum
+        }, 0)
+        return {
+            ...state,
+            total_quantity,
+            total_amount
         }
     }
 }
@@ -48,6 +60,7 @@ const reducer = (state, action) => {
 export {
     ADD_TO_CART, REMOVE_FROM_CART,
     CHECKOUT_CART, CLEAR_CART,
-    INCREASE_ITEM, DECREASE_ITEM
+    INCREASE_ITEM, DECREASE_ITEM,
+    COUNT_TOTALS
 }
 export default reducer
