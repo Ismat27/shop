@@ -51,7 +51,7 @@ const Header = () => {
                     <Link className='nav-link' to={'/cart'}>
                         <span className='pop-up'>
                             <HiShoppingCart />
-                            <span>5</span>
+                            <span>{total_quantity}</span>
                         </span>
                         cart
                     </Link>
