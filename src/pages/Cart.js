@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import CartItem from '../components/CartItem'
 import { useCartContext } from '../contexts/CartContext'
+import { formatPrice } from '../helpers'
 
 const Cart = () => {
     const {cartItems,total_quantity, total_amount} = useCartContext()
@@ -49,7 +50,7 @@ const Cart = () => {
                 <div className='summary-box'>
                     <p className='bold'>
                         <span>Sub total</span>
-                        <span>${total_amount}</span>
+                        <span>{formatPrice(total_amount)}</span>
                     </p>
                     <p className='bold'>
                         <span>Delivery</span>
@@ -57,12 +58,12 @@ const Cart = () => {
                     </p>
                     <p className='bold'>
                         <span>Total</span>
-                        <span>${total_amount}</span>
+                        <span>{formatPrice(total_amount)}</span>
                     </p>
                 </div>
             </section>
             <section className='other'>
-                <Link to={'/checkout'} className='capitalize btn checkout-btn'>Checkout (${total_amount}) </Link>
+                <Link to={'/checkout'} className='capitalize btn checkout-btn'>Checkout ({formatPrice(total_amount)}) </Link>
                 <p>
                     <Link to={'/shop'} className='bold blue'>Continue Shopping</Link>
                 </p>

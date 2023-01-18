@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useProductContext } from '../contexts/ProductContext'
 import { useCartContext } from '../contexts/CartContext'
+import { formatPrice } from '../helpers'
 
 const Shop = () => {
 
@@ -38,7 +39,7 @@ const Shop = () => {
                                 <div>
                                     <p className='info'>
                                         <span className='name'>{name}</span>
-                                        <span className='price'>N {price}</span>
+                                        <span className='price'>{formatPrice(price)}</span>
                                     </p>
                                     <button 
                                         className='add'
@@ -96,7 +97,7 @@ margin-block: 1.5rem 4rem;
     padding: .8rem 0;
     cursor: pointer;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 1.2rem;
     line-height: 32px;
     color: var(--white);
 }

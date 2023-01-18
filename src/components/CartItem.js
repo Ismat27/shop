@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import laptop from '../assets/images/apple_laptop.png'
+import { formatPrice } from '../helpers'
 
 const CartItem = ({data}) => {
     const {
@@ -25,7 +26,7 @@ const CartItem = ({data}) => {
             </div>
             <div>
                 <div className='price'>
-                    <p className='sale-price'>${price || 450}</p>
+                    <p className='sale-price'>{formatPrice(price) || 450}</p>
                     <p className='stock-price'>${stockPrice || 500}</p>
                 </div>
                 <button className='btn remove-btn'>Remove -</button>
