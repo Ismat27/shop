@@ -10,8 +10,16 @@ import {
 import reducer from './CartReducer'
 const Context = React.createContext()
 
+const getLocalItems = () => {
+    const items = localStorage.getItem('cartItems')
+    if (!items) {
+        return []
+    }
+    return JSON.parse(items)
+}
+
 const initialState = {
-    cartItems: [],
+    cartItems: getLocalItems(),
     total_quantity: 0,
     total_amount: 0,
     loading: false,
@@ -26,6 +34,7 @@ const CartContext = ({children}) => {
     }
 
     useEffect(()=>{
+        localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
         dispatch({type: COUNT_TOTALS})
     }, [state.cartItems])
 
