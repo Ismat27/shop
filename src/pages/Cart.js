@@ -11,8 +11,10 @@ const Cart = () => {
     if (cartItems.length === 0) {
         return (
             <Wrapper className='page-center'>
-                <h3 className='capitalize'>your cart is empty</h3>
-                <Link className='blue' to={'/shop'}>shop here</Link>
+                <div className='empty-cart'>
+                    <h3 className='capitalize'>your cart is empty</h3>
+                    <Link className='btn' to={'/shop'}>shop here</Link>
+                </div>
             </Wrapper>
         )
     }
@@ -74,6 +76,17 @@ const Cart = () => {
 }
 
 const Wrapper = styled.div`
+.empty-cart {
+    height: 35vh;
+    padding-top: 10vh;
+    text-align: center;
+    h3 {
+        margin-bottom: 2rem;
+    }
+    a {
+        display: inline-block;
+    }
+}
 margin-block: 1rem 3rem;
 h1 {
     margin-block: 1rem;
