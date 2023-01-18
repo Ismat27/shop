@@ -55,6 +55,13 @@ const reducer = (state, action) => {
             total_amount
         }
     }
+    if (action.type === REMOVE_FROM_CART) {
+        const tempItems = state.cartItems.filter(item => item.id !== action.payload)
+        return {
+            ...state,
+            cartItems: tempItems
+        }
+    }
 }
 
 export {

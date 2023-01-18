@@ -2,14 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import laptop from '../assets/images/apple_laptop.png'
 import { formatPrice } from '../helpers'
+import { useCartContext } from '../contexts/CartContext'
 
 const CartItem = ({data}) => {
+    const { removeFromCart } = useCartContext()
     const {
         image, name,
         salePrice, stockPrice,
         qty,
         quantity,
-        price
+        price,
+        id
     } = data
     return (
         <Wrapper className=''>
@@ -29,7 +32,7 @@ const CartItem = ({data}) => {
                     <p className='sale-price'>{formatPrice(price) || 450}</p>
                     <p className='stock-price'>${stockPrice || 500}</p>
                 </div>
-                <button className='btn remove-btn'>Remove -</button>
+                <button onClick={() => removeFromCart(id)} className='btn remove-btn'>Remove -</button>
             </div>
         </Wrapper>
     )
