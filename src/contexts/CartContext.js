@@ -1,10 +1,11 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { 
     ADD_TO_CART, 
     REMOVE_FROM_CART, 
     CLEAR_CART,
     INCREASE_ITEM,
-    DECREASE_ITEM
+    DECREASE_ITEM,
+    COUNT_TOTALS
 } from './CartReducer'
 import reducer from './CartReducer'
 const Context = React.createContext()
@@ -23,6 +24,10 @@ const CartContext = ({children}) => {
     const addToCart = (productId, product, quantity=1) => {
         dispatch({type: ADD_TO_CART, payload: {productId, product, quantity}})
     }
+
+    useEffect(()=>{
+        dispatch({type: COUNT_TOTALS})
+    }, [state.cartItems])
 
     return (
         <Context.Provider
