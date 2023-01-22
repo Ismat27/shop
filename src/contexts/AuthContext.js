@@ -6,10 +6,7 @@ import {
 const Context = createContext()
 
 const initialData = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
+    user: {},
     isLogin: false,
     loading: true,
 }
@@ -18,8 +15,8 @@ const AuthContext = ({children}) => {
 
     const [state, dispatch] = useReducer(authFunction, initialData);
 
-    const login = () => {
-        dispatch({type: LOGIN})
+    const login = (data) => {
+        dispatch({type: LOGIN, payload: data})
     }
 
     const logout = () => {
