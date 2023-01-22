@@ -4,8 +4,10 @@ import styled from 'styled-components'
 import CartItem from '../components/CartItem'
 import { useCartContext } from '../contexts/CartContext'
 import { formatPrice } from '../helpers'
+import { useAuthContext } from '../contexts/AuthContext'
 
 const Cart = () => {
+    const {isLogin} = useAuthContext()
     const {cartItems,total_quantity, total_amount} = useCartContext()
 
     if (cartItems.length === 0) {
@@ -65,7 +67,11 @@ const Cart = () => {
                 </div>
             </section>
             <section className='other'>
-                <Link to={'/checkout'} className='capitalize btn checkout-btn'>Checkout ({formatPrice(total_amount)}) </Link>
+            {
+                isLogin?
+                <Link to={'/checkout'} className='capitalize btn checkout-btn'>Checkout ({formatPrice(total_amount)}) </Link>:
+                <Link to={'/login'} className='capitalize btn checkout-btn'>login to checkout ({formatPrice(total_amount)})</Link>
+            }
                 <p>
                     <Link to={'/shop'} className='bold blue'>Continue Shopping</Link>
                 </p>
