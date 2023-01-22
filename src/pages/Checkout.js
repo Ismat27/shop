@@ -1,10 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import styled from 'styled-components'
 import AddressFields from '../components/AddressFields'
 import useCheckout from '../hooks/useCheckout'
-
+import { useAuthContext } from '../contexts/AuthContext'
 const Checkout = () => {
+
+    const {isLogin} = useAuthContext()
 
     const {
         sameAddress, setSameAddress,
@@ -12,6 +14,12 @@ const Checkout = () => {
         editBillingAdrress, editShippingAdrress,
         checkoutSubmit
     } = useCheckout()
+
+    if (!isLogin) {
+        return (
+            <Navigate to={'/login'} replace/>
+        )
+    }
 
   return (
     <Wrapper className='page-center'>
