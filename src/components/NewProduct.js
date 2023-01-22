@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import styled from 'styled-components'
 
 const NewProduct = () => {
 
@@ -42,51 +43,61 @@ const NewProduct = () => {
     }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit} className='new-product-form'>
-            <h1>New Product</h1>
-            <div className='form-field'>
-                <label htmlFor='name'>title</label>
-                <input
-                    name='name'
-                    id='name'
-                    value={productName}
-                    onChange={(e) => setProductName(e.target.value)}
-                />
-            </div>
-            <div className='form-field'>
-                <label htmlFor='desc'>description</label>
-                <textarea
-                    name='desc'
-                    id='desc'
-                    value={productDesc}
-                    onChange={(e) => setProductDesc(e.target.value)}
-                />
-            </div>
-            <div className='form-field'>
-                <label htmlFor='price'>price</label>
-                <input
-                    name='price'
-                    id='price'
-                    value={productPrice}
-                    onChange={(e) => setProductPrice(e.target.value)}
-                />
-            </div>
-            <div className='form-field'>
-                <label htmlFor='image'>upload image</label>
-                <input
-                    name='image'
-                    id='image'
-                    type={'file'}
-                    accept='image/*'
-                    onChange={setImg}
-                />
-            </div>
-            <button className='btn submit-btn'>submit</button>
-        </form>
-    </div>
+    <Wrapper className='bg-white'>
+        <div className='content'>
+            <form onSubmit={handleSubmit} className='new-product-form'>
+                <h1>New Product</h1>
+                <div className='form-field'>
+                    <label htmlFor='name'>title</label>
+                    <input
+                        name='name'
+                        id='name'
+                        value={productName}
+                        onChange={(e) => setProductName(e.target.value)}
+                    />
+                </div>
+                <div className='form-field'>
+                    <label htmlFor='desc'>description</label>
+                    <textarea
+                        name='desc'
+                        id='desc'
+                        value={productDesc}
+                        onChange={(e) => setProductDesc(e.target.value)}
+                    />
+                </div>
+                <div className='form-field'>
+                    <label htmlFor='price'>price</label>
+                    <input
+                        name='price'
+                        id='price'
+                        value={productPrice}
+                        onChange={(e) => setProductPrice(e.target.value)}
+                    />
+                </div>
+                <div className='form-field'>
+                    <label htmlFor='image'>upload image</label>
+                    <input
+                        name='image'
+                        id='image'
+                        type={'file'}
+                        accept='image/*'
+                        onChange={setImg}
+                    />
+                </div>
+                <button className='btn submit-btn'>submit</button>
+            </form>
+        </div>
+    </Wrapper>
   )
 }
 
+const Wrapper = styled.section`
+max-width: 928px;
+margin: auto;
+.content {
+    background: #FAFBFE;
+    padding: 20px 24px;
+}
+`
 
 export default NewProduct

@@ -94,11 +94,10 @@ margin-block: 1.5rem 4rem;
     display: block;
     width: 100%;
     border: none;
-    padding: .8rem 0;
+    padding: 1rem 0;
     cursor: pointer;
     font-weight: 600;
     font-size: 1.2rem;
-    line-height: 32px;
     color: var(--white);
 }
 img {
