@@ -10,17 +10,18 @@ export const authFunction = (state, action) => {
                 ...state,
             }
         case LOGIN:
+            const data = action.payload
             return {
                 ...state,
+                user: {...data},
+                loading: false,
                 isLogin: true
             }
         case LOGOUT:
             return {
                 ...state,
-                firstName: '',
-                lastName: '',
-                email: '',
-                phone: '',
+                user: {},
+                loading: false,
                 isLogin: false,
             }
         case UPDATE_STATE:
