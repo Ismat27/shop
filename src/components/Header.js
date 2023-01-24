@@ -5,6 +5,7 @@ import Search from './Search'
 import { HiShoppingCart } from 'react-icons/hi'
 import Hamburger from './Hamburger'
 import { useCartContext } from '../contexts/CartContext'
+import Category from './Category'
 
 const Header = () => {
 
@@ -58,6 +59,7 @@ const Header = () => {
                 </li>
             </ul>
         </div>
+        <Category />
     </Wrapper>
     )
 }
@@ -66,7 +68,7 @@ const Wrapper = styled.header`
 position: sticky;
 top: 0;
 z-index: 1000;
-padding-block: 1rem 2rem;
+padding-block: 1rem 0rem;
 .logo-text {
     font-size: 1.2rem;
 }
@@ -114,7 +116,7 @@ padding-block: 1rem 2rem;
     }
 }
 @media (min-width: 768px) {
-    padding-block: .5rem 1rem;
+    padding-block: .5rem 0rem;
     .content {
         display: flex;
         justify-content: space-between;
