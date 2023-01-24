@@ -1,17 +1,25 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useProductContext } from '../contexts/ProductContext'
 
 const Category = () => {
-    const { product_categories } = useProductContext()
+    const { product_categories, filterCategory } = useProductContext()
+    const navigate = useNavigate()
+
+    const changeCategory = (category) => {
+        navigate('/shop')
+        filterCategory(category)
+    }
+
     return (
         <Wrapper>
             <ul className='page-center'>
-                <li>all</li>
+                <li onClick={() => changeCategory('all')}>all</li>
                 {
                     product_categories.map(category => {
                         return (
-                            <li key={category}>{category}</li>
+                            <li onClick={() => changeCategory(category)} key={category}>{category}</li>
                         )
                     })
                 }
