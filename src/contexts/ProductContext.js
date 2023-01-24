@@ -6,7 +6,8 @@ import {
     FETCH_PRODUCTS_SUCCESS,
     FETCH_SINGLE_PRODUCT_START, 
     FETCH_SINGLE_PRODUCT_FAILED,
-    FETCH_SINGLE_PRODUCT_SUCCESS
+    FETCH_SINGLE_PRODUCT_SUCCESS,
+    FILTER_CATEGORY
 } from './ProductReducer'
 import reducer from './ProductReducer'
 const Context = React.createContext()
@@ -19,7 +20,8 @@ const initialState = {
     single_product: {},
     single_product_loading: false,
     single_product_loading_error: false,
-    product_categories: []
+    product_categories: [],
+    current_category: 'all products'
 }
 
 const ProductContext = ({children}) => {
@@ -50,6 +52,10 @@ const ProductContext = ({children}) => {
         })
     }, [])
 
+    const filterCategory = (category) => {
+        dispatch({type: FILTER_CATEGORY, payload: category})
+    }
+
     useEffect(() => {
         fetchProducts()
     }, [fetchProducts])
@@ -57,7 +63,8 @@ const ProductContext = ({children}) => {
     return (
         <Context.Provider value={{
             ...state,
-            fetchSingleProduct
+            fetchSingleProduct,
+            filterCategory
         }}>
             {children}
         </Context.Provider>

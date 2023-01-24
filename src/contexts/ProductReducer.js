@@ -4,6 +4,7 @@ const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS'
 const FETCH_SINGLE_PRODUCT_START = 'FETCH_SINGLE_PRODUCT_LOADING';
 const FETCH_SINGLE_PRODUCT_SUCCESS = 'FETCH_SINGLE_PRODUCT_SUCCESS'
 const FETCH_SINGLE_PRODUCT_FAILED = 'FETCH_SINGLE_PRODUCT_FAILED';
+const FILTER_CATEGORY = 'FILTER_CATEGORY'
 
 const reducer = (state, action) => {
     if (action.type === FETCH_PRODUCTS_START) {
@@ -61,6 +62,28 @@ const reducer = (state, action) => {
             single_product_loading_error: true,
         }
     }
+    if (action.type === FILTER_CATEGORY) {
+        const newCategory = action.payload
+        if (newCategory === 'all') {
+            return {
+                ...state,
+                current_products: state.products,
+                current_category: 'all products'
+            }
+        }
+        else {
+            const tempProducts = state.products.filter(item => {
+                if (item.category === newCategory) {
+                    return item 
+                }
+            })
+            return {
+                ...state,
+                current_products: tempProducts,
+                current_category: newCategory
+            }
+        }
+    }
     throw new Error('Unknown action')
 }
 
@@ -70,6 +93,7 @@ export {
     FETCH_PRODUCTS_SUCCESS,
     FETCH_SINGLE_PRODUCT_START,
     FETCH_SINGLE_PRODUCT_SUCCESS,
-    FETCH_SINGLE_PRODUCT_FAILED
+    FETCH_SINGLE_PRODUCT_FAILED,
+    FILTER_CATEGORY
 }
 export default reducer
