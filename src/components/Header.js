@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Search from './Search'
@@ -9,6 +9,9 @@ import Category from './Category'
 
 const Header = () => {
 
+    const catContRef = useRef(null)
+    const catListRef = useRef(null)
+
     const {total_quantity} = useCartContext()
 
     const [menuOpen, setMenuOpen] = useState(false)
@@ -16,6 +19,16 @@ const Header = () => {
     const toggleMenu = () => {
         setMenuOpen(!menuOpen)
     }
+
+    useEffect(() => {
+        const listHeight = catListRef.current.getBoundingClientRect().height
+        if (menuOpen) {
+            catContRef.current.style.height = `${listHeight}px`
+        }
+        else {
+            catContRef.current.style.height = 0
+        }
+    }, [menuOpen])
 
     return (
     <Wrapper className='bg-white'>
@@ -59,7 +72,7 @@ const Header = () => {
                 </li>
             </ul>
         </div>
-        <Category />
+        <Category contRef={catContRef} listRef={catListRef}/>
     </Wrapper>
     )
 }
@@ -69,6 +82,9 @@ position: sticky;
 top: 0;
 z-index: 1000;
 padding-block: 1rem 0rem;
+.category-container {
+    overflow: hidden;
+}
 .logo-text {
     font-size: 1.2rem;
 }
@@ -132,6 +148,9 @@ padding-block: 1rem 0rem;
     }
     .nav-link {
         flex-direction: column;
+    }
+    .category-container {
+        height: auto !important;
     }
 }
 @media (min-width: 992px) {

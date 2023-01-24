@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useProductContext } from '../contexts/ProductContext'
 
-const Category = () => {
+const Category = ({contRef, listRef}) => {
     const { product_categories, filterCategory } = useProductContext()
     const navigate = useNavigate()
 
@@ -13,8 +13,8 @@ const Category = () => {
     }
 
     return (
-        <Wrapper>
-            <ul className='page-center'>
+        <Wrapper ref={contRef} className='category-container'>
+            <ul ref={listRef} className='page-center'>
                 <li onClick={() => changeCategory('all')}>all</li>
                 {
                     product_categories.map(category => {
