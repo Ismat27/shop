@@ -7,7 +7,7 @@ import { formatPrice } from '../helpers'
 const Shop = () => {
 
     const {addToCart} = useCartContext()
-    const {current_products} = useProductContext()
+    const {current_products, current_category} = useProductContext()
 
     if (current_products.length === 0) {
         return (
@@ -25,7 +25,7 @@ const Shop = () => {
     <Wrapper className=''>
         <div className='products-container page-center'>
             <div className='section-header'>
-                <h1 className='category-name'>ProductsList</h1>
+                <h1 className='capitalize category-name'>{current_category}</h1>
             </div>
             <div className='bg-white products'>
                 {
