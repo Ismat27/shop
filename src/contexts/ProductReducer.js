@@ -15,12 +15,19 @@ const reducer = (state, action) => {
     }
     if (action.type === FETCH_PRODUCTS_SUCCESS) {
         const data = action.payload
+        const categories = data.reduce((aggregate, item)=>{
+            if (!aggregate.includes(item.category)) {
+                aggregate.push(item.category)
+            }
+            return aggregate
+        }, [])
         return {
             ...state,
             products_loading: false,
             products_loading_error: false,
             products: data,
             current_products: data,
+            product_categories: categories
         }
     }
     if (action.type === FETCH_PRODUCTS_FAILED) {

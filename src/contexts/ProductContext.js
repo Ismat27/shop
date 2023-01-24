@@ -19,6 +19,7 @@ const initialState = {
     single_product: {},
     single_product_loading: false,
     single_product_loading_error: false,
+    product_categories: []
 }
 
 const ProductContext = ({children}) => {
