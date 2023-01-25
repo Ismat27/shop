@@ -2,17 +2,36 @@ import React from 'react'
 import styled from 'styled-components'
 import Countdown from './Countdown'
 import FlashSaleProdCard from './FlashSaleProdCard'
+import { useProductContext } from '../contexts/ProductContext'
 
 const FlashSales = () => {
+  const {flash_sales, products_loading} = useProductContext()
+
+  if (products_loading) {
+    return (
+      <Wrapper>
+        <div className='no-products'>
+          <h3>loading...</h3>
+        </div>
+      </Wrapper>
+    )
+  }
+
+  if (flash_sales.length < 1) {
+    return ''
+  }
+
   return (
     <Wrapper>
         <Countdown />
         <div className='products-group-one'>
-            <FlashSaleProdCard />
-            <FlashSaleProdCard />
-            <FlashSaleProdCard />
-            <FlashSaleProdCard />
-            <FlashSaleProdCard />
+          {
+            flash_sales.map(item => {
+              return (
+                <FlashSaleProdCard key={item.id} data={item} />
+              )
+            })
+          }
         </div>
     </Wrapper>
   )

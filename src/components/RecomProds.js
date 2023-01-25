@@ -2,32 +2,34 @@ import React from 'react'
 import styled from 'styled-components'
 import RecomProdCard from './RecomProdCard'
 import CompHeader from './CompHeader'
+import { useProductContext } from '../contexts/ProductContext'
 
 const RecomProds = () => {
+    const {recommended_products, products_loading} = useProductContext()
+
+    if (products_loading) {
+        return (
+          <Wrapper>
+            <div className='no-products'>
+              <h3>loading...</h3>
+            </div>
+          </Wrapper>
+        )
+    }
+    
   return (
     <Wrapper>
         <CompHeader 
             title={'recommended'}
         />
         <div className='bg-white products'>
-            <RecomProdCard 
-                data={{}}
-            />
-            <RecomProdCard 
-                data={{}}
-            />
-            <RecomProdCard 
-                data={{}}
-            />
-            <RecomProdCard 
-                data={{}}
-            />
-            <RecomProdCard 
-                data={{}}
-            />
-            <RecomProdCard 
-                data={{}}
-            />
+            {
+                recommended_products.map((item)=> {
+                    return (
+                        <RecomProdCard key={item.id} data={item} />
+                    )
+                })
+            }
         </div>
     </Wrapper>
   )
