@@ -2,12 +2,41 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useProductContext } from '../contexts/ProductContext'
 import { useCartContext } from '../contexts/CartContext'
-import { formatPrice } from '../helpers'
+import { formatPrice, formatStr } from '../helpers'
 
 const Shop = () => {
 
     const {addToCart} = useCartContext()
-    const {current_products, current_category} = useProductContext()
+    const {
+        current_products, 
+        current_category, 
+        products_loading,
+        products_loading_error,
+    } = useProductContext()
+
+    if (products_loading) {
+        return (
+            <Wrapper>
+                <div className='no-products'>
+                    <h1>
+                        loading...
+                    </h1>
+                </div>
+            </Wrapper>
+        )
+    }
+
+    if (products_loading_error) {
+        return (
+            <Wrapper>
+                <div className='no-products'>
+                    <h1>
+                        an error occured, pls reload the page
+                    </h1>
+                </div>
+            </Wrapper>
+        )
+    }
 
     if (current_products.length === 0) {
         return (
@@ -38,7 +67,7 @@ const Shop = () => {
                                 </Link>
                                 <div>
                                     <p className='info'>
-                                        <span className='name'>{name}</span>
+                                        <span className='name'>{formatStr(name)}</span>
                                         <span className='price'>{formatPrice(price)}</span>
                                     </p>
                                     <button 
@@ -107,10 +136,11 @@ img {
 .info {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     text-transform: capitalize;
     font-weight: 600;
     margin-bottom: 1rem;
+    gap: 0.5rem;
 }
 @media (min-width: 576px) {
     .products {
