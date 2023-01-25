@@ -16,6 +16,14 @@ const reducer = (state, action) => {
     }
     if (action.type === FETCH_PRODUCTS_SUCCESS) {
         const data = action.payload
+        const flash_sales = data.filter(item => item.is_flash_sale).slice(0, 5)
+        const recommended_products = data.filter(item => item.is_recommended).slice(0, 6)
+        const new_arrivals = data.sort((a,b) => {
+            return b.timestamp - a.timestamp
+        }).slice(0, 6)
+        const top_ranked = data.sort((a,b) => {
+            return b.discount - a.discount
+        }).slice(0, 5)
         const categories = data.reduce((aggregate, item)=>{
             if (!aggregate.includes(item.category)) {
                 aggregate.push(item.category)
@@ -24,6 +32,10 @@ const reducer = (state, action) => {
         }, [])
         return {
             ...state,
+            flash_sales,
+            recommended_products,
+            new_arrivals,
+            top_ranked,
             products_loading: false,
             products_loading_error: false,
             products: data,
@@ -73,9 +85,7 @@ const reducer = (state, action) => {
         }
         else {
             const tempProducts = state.products.filter(item => {
-                if (item.category === newCategory) {
-                    return item 
-                }
+                return item.category === newCategory
             })
             return {
                 ...state,

@@ -15,6 +15,10 @@ const Context = React.createContext()
 const initialState = {
     products: [],
     current_products: [],
+    recommended_products: [],
+    flash_sales: [],
+    new_arrivals: [],
+    top_ranked: [],
     products_loading: false,
     products_loading_error: false,
     single_product: {},
