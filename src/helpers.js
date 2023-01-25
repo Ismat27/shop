@@ -5,3 +5,10 @@ export const formatPrice = (number) => {
     }).format(number / 100)
 
 }
+
+export const formatStr = (string, length=20) => {
+    if (string.length <= length) {
+        return string
+    }
+    return `${string.substr(0, length)}...`
+}
