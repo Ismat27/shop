@@ -1,23 +1,34 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import ipod from '../assets/images/ipod.png'
+import { formatStr } from '../helpers'
 
-const CardOne = ({image,  children }) => {
+const CardOne = ({ data, children }) => {
+    const {
+        image,
+        name,
+        price,
+        discounted_price,
+        discount,
+        id
+    } = data
   return (
-    <Wrapper className='prod-card'>
-        <div className='prod-box'>
-            <div className='prod-img-box'>
-                <img alt='product' src={image || ipod} />
+    <Link to={`/products/${id}`}>
+        <Wrapper className='prod-card'>
+            <div className='prod-box'>
+                <div className='prod-img-box'>
+                    <img alt={name} src={image} />
+                </div>
+                <p className='prod-name'>{formatStr(name)}</p>
+                <p className='prices'>
+                    <span className='actual-price'>N{price}</span>
+                    <span className='discounted-price'>N{discounted_price}</span>
+                </p>
+                {children}
             </div>
-            <p className='prod-name'>Canon EOS Rebel T3i ..</p>
-            <p className='prices'>
-                <span className='actual-price'>$350</span>
-                <span className='discounted-price'>$332.5</span>
-            </p>
-            {children}
-        </div>
-        <div className='discount-percent'>5%</div>
-    </Wrapper>
+            <div className='discount-percent'>{discount}%</div>
+        </Wrapper>
+    </Link>
   )
 }
 
@@ -48,6 +59,9 @@ padding-bottom: 1.5rem;
 .actual-price {
     text-decoration: line-through;
     color: var(--grey-three);
+}
+.discounted-price {
+    color: var(--black-text-color);
 }
 .remainder {
     margin-bottom: .35rem;

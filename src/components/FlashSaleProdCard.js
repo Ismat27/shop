@@ -1,5 +1,4 @@
 import React from 'react'
-import canon from '../assets/images/canon.png'
 import CardOne from '../products/CardOne'
 
 export const Range = ({ percent }) => {
@@ -13,14 +12,14 @@ export const Range = ({ percent }) => {
     )
 }
 
-const FlashSaleProdCard = ({image}) => {
+const FlashSaleProdCard = ({data}) => {
   return (
     <CardOne
-        image={image || canon}
+        data={data}
     >
-        <Range 
+        {/* <Range 
             percent={50}
-        />
+        /> */}
     </CardOne>
   )
 }

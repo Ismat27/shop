@@ -1,37 +1,40 @@
 import React from 'react'
 import styled from 'styled-components'
-import iphone from '../assets/images/iphone.png'
-import Emporio from '../assets/images/Emporio.png'
 import { FaStar } from 'react-icons/fa'
+import { formatStr } from '../helpers'
+import { Link } from 'react-router-dom'
 
 const RecomProdCard = ({data}) => {
     const {
         name,
         image,
         price,
-        discountedPrice,
+        discounted_price,
         discount,
         rating,
-        reviews
+        reviews,
+        id
     } = data
   return (
     <Wrapper className='prod-card'>
-        <div className='prod-box'>
-            <div className='prod-img-box'>
-                <img src={image || Emporio} />
+        <Link to={`/products/${id}`}>
+            <div className='prod-box'>
+                <div className='prod-img-box'>
+                    <img alt={name} src={image} />
+                </div>
+                <div className='prod-info'>
+                    <h3 className='prod-name'>{formatStr(name)}</h3>
+                    <p className='prices'>
+                        <span className='actual-price'>N{price}</span>
+                        <span className='discounted-price'>N{discounted_price}</span>
+                    </p>
+                    <p className='prod-stats'>
+                        <span className='star'><FaStar/> {rating || 0}</span>
+                        <span className='reviews'>| {reviews || 0} Reviews</span>
+                    </p>
+                </div>
             </div>
-            <div className='prod-info'>
-                <h3 className='prod-name'>{name || 'Apple iPhone 12 Pro Max'}</h3>
-                <p className='prices'>
-                    <span className='actual-price'>${price || '1,169.60'}</span>
-                    <span className='discounted-price'>${discountedPrice || '899.69'}</span>
-                </p>
-                <p className='prod-stats'>
-                    <span className='star'><FaStar/> {rating || 4.8}</span>
-                    <span className='reviews'>| {reviews || 26} Reviews</span>
-                </p>
-            </div>
-        </div>
+        </Link>
         <div className='discount-percent'>{discount || 30}%</div>
     </Wrapper>
   )
@@ -78,9 +81,11 @@ max-width: 380px;
 .discounted-price {
     font-weight: 600;
     font-size: 16px;
+    color: var(--black-text-color);
 }
 .star{
     font-weight: 600;
+    color: #030710;
     svg {
         color: #F6CA2E;
     }
