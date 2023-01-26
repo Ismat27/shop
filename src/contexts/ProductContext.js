@@ -11,6 +11,7 @@ import {
 } from './ProductReducer'
 import reducer from './ProductReducer'
 const Context = React.createContext()
+const BASE_URL = process.env.REACT_APP_BASE_URL
 
 const initialState = {
     products: [],
@@ -33,7 +34,7 @@ const ProductContext = ({children}) => {
 
     const fetchProducts = useCallback(() => {
         dispatch({type: FETCH_PRODUCTS_START})
-        axios.get('http://localhost:8000/api/products/')
+        axios.get(`${BASE_URL}/api/products/`)
         .then(response => {
             const { data } = response
             dispatch({type:FETCH_PRODUCTS_SUCCESS, payload:data})
@@ -46,7 +47,7 @@ const ProductContext = ({children}) => {
 
     const fetchSingleProduct = useCallback((productId) => {
         dispatch({type: FETCH_SINGLE_PRODUCT_START})
-        axios.get(`http://localhost:8000/api/products/${productId}/`)
+        axios.get(`${BASE_URL}/api/products/${productId}/`)
         .then(response => {
             const { data } = response
             dispatch({type:FETCH_SINGLE_PRODUCT_SUCCESS, payload:data})
