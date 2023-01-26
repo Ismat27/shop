@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import styled from 'styled-components'
+const BASE_URL = process.env.REACT_APP_BASE_URL
 
 const NewProduct = () => {
 
@@ -27,7 +28,7 @@ const NewProduct = () => {
         data.append('price', productPrice)
         data.append('image',  productImg, productImg.name)
 
-        axios.post('http://127.0.0.1:8000/api/products/',  data, {
+        axios.post(`${BASE_URL}/api/products/`,  data, {
             headers: {'Content-Type': 'multi-part/form-data'}
         })
         .then(res => {
