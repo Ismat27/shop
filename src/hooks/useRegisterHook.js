@@ -21,7 +21,7 @@ const useRegisterHook = () => {
             password, passwordTwo
         });
         // validate data
-        axios.post(`${BASE_URL}/api/signup/`, {
+        axios.post(`${BASE_URL}/signup/`, {
           first_name: firstName, last_name: lastName,
           password, pasword: passwordTwo, email
         })

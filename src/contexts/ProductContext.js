@@ -34,7 +34,7 @@ const ProductContext = ({children}) => {
 
     const fetchProducts = useCallback(() => {
         dispatch({type: FETCH_PRODUCTS_START})
-        axios.get(`${BASE_URL}/api/products/`)
+        axios.get(`${BASE_URL}/products/`)
         .then(response => {
             const { data } = response
             dispatch({type:FETCH_PRODUCTS_SUCCESS, payload:data})
@@ -47,7 +47,7 @@ const ProductContext = ({children}) => {
 
     const fetchSingleProduct = useCallback((productId) => {
         dispatch({type: FETCH_SINGLE_PRODUCT_START})
-        axios.get(`${BASE_URL}/api/products/${productId}/`)
+        axios.get(`${BASE_URL}/products/${productId}/`)
         .then(response => {
             const { data } = response
             dispatch({type:FETCH_SINGLE_PRODUCT_SUCCESS, payload:data})
