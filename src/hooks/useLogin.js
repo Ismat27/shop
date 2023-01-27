@@ -42,7 +42,7 @@ const useLogin = () => {
             loginDispatch(data)
             setEmail("")
             setPassword("")
-            navigate(from)
+            navigate(from, {replace: true})
         })
         .catch((error) => {
             console.log(error);

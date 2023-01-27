@@ -1,10 +1,13 @@
-import React from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import AddressFields from '../components/AddressFields'
 import useCheckout from '../hooks/useCheckout'
 import { useAuthContext } from '../contexts/AuthContext'
 const Checkout = () => {
+
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const {isLogin} = useAuthContext()
 
@@ -15,11 +18,13 @@ const Checkout = () => {
         checkoutSubmit
     } = useCheckout()
 
-    if (!isLogin) {
-        return (
-            <Navigate to={'/login'} replace/>
-        )
-    }
+    useEffect(() => {
+        if (!isLogin) {
+            return (
+                navigate('/login', {state: {from: location}, replace: true })
+            )
+        }
+    })
 
   return (
     <Wrapper className='page-center'>

@@ -5,10 +5,17 @@ import CartItem from '../components/CartItem'
 import { useCartContext } from '../contexts/CartContext'
 import { formatPrice } from '../helpers'
 import { useAuthContext } from '../contexts/AuthContext'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const Cart = () => {
     const {isLogin} = useAuthContext()
     const {cartItems,total_quantity, total_amount} = useCartContext()
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const redirectLogin = () => {
+        navigate('/login', {state: {from: {...location, pathname: '/checkout'}}, replace: true })
+    }
 
     if (cartItems.length === 0) {
         return (
@@ -70,7 +77,7 @@ const Cart = () => {
             {
                 isLogin?
                 <Link to={'/checkout'} className='capitalize btn checkout-btn'>Checkout ({formatPrice(total_amount)}) </Link>:
-                <Link to={'/login'} className='capitalize btn checkout-btn'>login to checkout ({formatPrice(total_amount)})</Link>
+                <button onClick={redirectLogin} className='capitalize btn checkout-btn'>login to checkout ({formatPrice(total_amount)})</button>
             }
                 <p>
                     <Link to={'/shop'} className='bold blue'>Continue Shopping</Link>
@@ -140,6 +147,7 @@ main {
     text-align: center;
     font-weight: 600;
     font-size: 1rem;
+    width: 100%;
 }
 @media (min-width: 576px) {
     h1 {
