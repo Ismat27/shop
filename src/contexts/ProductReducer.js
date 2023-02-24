@@ -15,14 +15,18 @@ const reducer = (state, action) => {
         }
     }
     if (action.type === FETCH_PRODUCTS_SUCCESS) {
-        const data = action.payload
-        const flash_sales = data.filter(item => item.is_flash_sale).slice(0, 5)
-        const recommended_products = data.filter(item => item.is_recommended).slice(0, 6)
+        const data = action.payload.products
+        const flash_sales = data.sort((a,b) => {
+            return b.discountPercentage - a.discountPercentage
+        }).slice(0, 5)
+        const recommended_products = data.sort((a,b) => {
+            return a.price - b.price
+        }).slice(0, 5)
         const new_arrivals = data.sort((a,b) => {
-            return b.timestamp - a.timestamp
-        }).slice(0, 6)
+            return b.stock - a.stock
+        }).slice(0, 5)
         const top_ranked = data.sort((a,b) => {
-            return b.discount - a.discount
+            return b.rating - a.rating
         }).slice(0, 5)
         const categories = data.reduce((aggregate, item)=>{
             if (!aggregate.includes(item.category)) {
