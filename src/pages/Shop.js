@@ -59,15 +59,15 @@ const Shop = () => {
             <div className='bg-white products'>
                 {
                     current_products.map((product, index) => {
-                        const {name, price, image, id} = product
+                        const {title, price, thumbnail, id} = product
                         return (
                             <article className='product-card' key={index}>
                                 <Link to={`/products/${id}`}>
-                                    <img className='product-img' src={image} alt={name} />
+                                    <img className='product-img' src={thumbnail} alt={title} />
                                 </Link>
                                 <div>
                                     <p className='info'>
-                                        <span className='name'>{formatStr(name)}</span>
+                                        <span className='name'>{formatStr(title)}</span>
                                         <span className='price'>{formatPrice(price)}</span>
                                     </p>
                                     <button 

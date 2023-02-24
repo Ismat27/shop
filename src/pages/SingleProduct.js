@@ -4,8 +4,9 @@ import { HiShoppingCart } from 'react-icons/hi'
 import { useParams } from 'react-router-dom'
 import { useProductContext } from '../contexts/ProductContext'
 import { FiMinus, FiPlus } from 'react-icons/fi'
-import { BsCurrencyDollar } from 'react-icons/bs'
+// import { BsCurrencyDollar } from 'react-icons/bs'
 import { useCartContext } from '../contexts/CartContext'
+import { formatPrice } from '../helpers'
 
 const SingleProduct = () => {
     const {addToCart} = useCartContext()
@@ -17,7 +18,7 @@ const SingleProduct = () => {
         single_product:product
     } = useProductContext()
 
-    const { name, image, desc, price, } = product
+    const { title, thumbnail, description, price, } = product
     const [quantity, setQuantity] = useState(1)
     const increaseQuantity = () => {
         setQuantity(prev => {
@@ -60,19 +61,19 @@ const SingleProduct = () => {
             <div className='page-center'>
                 <article className='bg-white info'>
                     <div className='imgs-box'>
-                        <img className='display-img' alt={name} src={image} />
+                        <img className='display-img' alt={title} src={thumbnail} />
                         <div className='other-imgs'>
 
                         </div>
                     </div>
                     <div className='details'>
-                        <h1 className='bold capitalize product-name'>{desc || name}</h1>
+                        <h1 className='bold capitalize product-name'>{description || title}</h1>
                         <p className='rating-review'>
                             <span className='bold star'></span>
                             <span className='review'></span>
                         </p>
                         <p className='prices'>
-                            <span className='bold sale-price'><BsCurrencyDollar />{price}</span>
+                            <span className='bold sale-price'>{formatPrice(price)}</span>
                             <span className='stock-price'></span>
                         </p>
                         <div className='qty-toggle'>

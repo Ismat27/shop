@@ -5,28 +5,31 @@ import { formatStr } from '../helpers'
 
 const CardOne = ({ data, children }) => {
     const {
-        image,
-        name,
+        title,
+        thumbnail,
         price,
-        discounted_price,
-        discount,
+        discountPercentage,
+        // rating,
+        // reviews,
         id
     } = data
+    const discount = (discountPercentage / 100) * price
+    const sale_price = price - discount
   return (
     <Link to={`/products/${id}`}>
         <Wrapper className='prod-card'>
             <div className='prod-box'>
                 <div className='prod-img-box'>
-                    <img alt={name} src={image} />
+                    <img alt={title} src={thumbnail} />
                 </div>
-                <p className='prod-name'>{formatStr(name)}</p>
+                <p className='prod-name'>{formatStr(title)}</p>
                 <p className='prices'>
                     <span className='actual-price'>N{price}</span>
-                    <span className='discounted-price'>N{discounted_price}</span>
+                    <span className='discounted-price'>N{sale_price}</span>
                 </p>
                 {children}
             </div>
-            <div className='discount-percent'>{discount}%</div>
+            <div className='discount-percent'>{discountPercentage}%</div>
         </Wrapper>
     </Link>
   )
@@ -41,6 +44,10 @@ padding-bottom: 1.5rem;
 .prod-img-box {
     text-align: center;
     margin-bottom: .5rem;
+    img {
+        width: 195px;
+        height: 240px;
+    }
 }
 .prod-name {
     font-weight: 400;
@@ -53,7 +60,7 @@ padding-bottom: 1.5rem;
     margin-block: .5rem;
     display: flex;
     gap: .8rem;
-    align-item: center;
+    align-items: center;
     font-weight: 700;
 }
 .actual-price {

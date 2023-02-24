@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import laptop from '../assets/images/apple_laptop.png'
 import { formatPrice } from '../helpers'
 import { useCartContext } from '../contexts/CartContext'
 
@@ -11,30 +10,35 @@ const CartItem = ({data}) => {
         increaseItem
     } = useCartContext()
     const {
-        image, name,
-        salePrice, stockPrice,
-        qty,
-        quantity,
+        title,
+        thumbnail,
         price,
+        discountPercentage,
+        description,
+        // rating,
+        // reviews,
+        quantity,
         id
     } = data
+    const discount = (discountPercentage / 100) * price
+    const sale_price = price - discount
     return (
         <Wrapper className=''>
             <div className='product'>
-                <img src={image || laptop} />
+                <img src={thumbnail} alt={title}/>
                 <div>
-                    <h3 className='capitalize prod-name'>{name || 'Name of Laptop and few specs'}</h3>
+                    <h3 className='capitalize prod-name'>{description}</h3>
                 </div>
             </div>
             <div className='qty'>
                 <button onClick={() => decreaseItem(id)} className='btn'>-</button>
-                <span>{quantity || 2}</span>
+                <span>{quantity}</span>
                 <button onClick={() => increaseItem(id)} className='btn'>+</button>
             </div>
             <div>
                 <div className='price'>
-                    <p className='sale-price'>{formatPrice(price) || 450}</p>
-                    <p className='stock-price'>${stockPrice || 500}</p>
+                    <p className='sale-price'>{formatPrice(sale_price)}</p>
+                    <p className='stock-price'>{formatPrice(price)}</p>
                 </div>
                 <button onClick={() => removeFromCart(id)} className='btn remove-btn'>Remove -</button>
             </div>
@@ -89,6 +93,10 @@ grid-template-columns: 40% 30% 30%;
         font-weight: 500;
         text-decoration: line-through;
     }
+}
+img {
+    width: 216px;
+    height: 120px;
 }
 @media (min-width: 576px) {
     grid-template-columns: 50% 25% 25%;

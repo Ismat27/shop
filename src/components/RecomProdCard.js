@@ -6,27 +6,28 @@ import { Link } from 'react-router-dom'
 
 const RecomProdCard = ({data}) => {
     const {
-        name,
-        image,
+        title,
+        thumbnail,
         price,
-        discounted_price,
-        discount,
+        discountPercentage,
         rating,
         reviews,
         id
     } = data
+    const discount = (discountPercentage / 100) * price
+    const sale_price = price - discount
   return (
     <Wrapper className='prod-card'>
         <Link to={`/products/${id}`}>
             <div className='prod-box'>
                 <div className='prod-img-box'>
-                    <img alt={name} src={image} />
+                    <img alt={title} src={thumbnail} />
                 </div>
                 <div className='prod-info'>
-                    <h3 className='prod-name'>{formatStr(name)}</h3>
+                    <h3 className='prod-name'>{formatStr(title)}</h3>
                     <p className='prices'>
                         <span className='actual-price'>N{price}</span>
-                        <span className='discounted-price'>N{discounted_price}</span>
+                        <span className='discounted-price'>N{sale_price}</span>
                     </p>
                     <p className='prod-stats'>
                         <span className='star'><FaStar/> {rating || 0}</span>
@@ -35,7 +36,7 @@ const RecomProdCard = ({data}) => {
                 </div>
             </div>
         </Link>
-        <div className='discount-percent'>{discount || 30}%</div>
+        <div className='discount-percent'>{discountPercentage || 30}%</div>
     </Wrapper>
   )
 }
@@ -53,6 +54,10 @@ max-width: 380px;
 .prod-img-box {
     padding-block: .5rem;
     padding-left: .5rem;
+    img {
+        width: 148px;
+        height: 140px;
+    }
 }
 .prod-info {
     padding-top: 2.5rem;
@@ -69,7 +74,7 @@ max-width: 380px;
 .prod-stats, .prices {
     display: flex;
     gap: .8rem;
-    align-item: center;
+    align-items: center;
 }
 .prices {
     margin-block: 1.0rem;
