@@ -46,6 +46,13 @@ const reducer = (state, action) => {
             return sum
         }, 0)
         const total_amount = state.cartItems.reduce((sum, item) => {
+            const disPercent = item.discountPercentage
+            if (disPercent) {
+                const discount = disPercent * 0.01 * item.price
+                const sale_price = item.price - discount
+                sum += item.quantity * sale_price
+                return sum
+            }
             sum += item.quantity * item.price
             return sum
         }, 0)
