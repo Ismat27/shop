@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { formatStr } from '../helpers'
+import { formatStr, formatPrice } from '../helpers'
 
 const CardOne = ({ data, children }) => {
     const {
@@ -24,8 +24,8 @@ const CardOne = ({ data, children }) => {
                 </div>
                 <p className='prod-name'>{formatStr(title)}</p>
                 <p className='prices'>
-                    <span className='actual-price'>N{price}</span>
-                    <span className='discounted-price'>N{sale_price}</span>
+                    <span className='actual-price'>{formatPrice(price)}</span>
+                    <span className='discounted-price'>{formatPrice(sale_price)}</span>
                 </p>
                 {children}
             </div>

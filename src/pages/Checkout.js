@@ -4,8 +4,10 @@ import styled from 'styled-components'
 import AddressFields from '../components/AddressFields'
 import useCheckout from '../hooks/useCheckout'
 import { useAuthContext } from '../contexts/AuthContext'
+import { useCartContext } from '../contexts/CartContext'
+import { formatPrice } from '../helpers'
 const Checkout = () => {
-
+    const {total_amount} = useCartContext()
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -38,7 +40,7 @@ const Checkout = () => {
             <div className='bg-white page-content'>
                 <p className='capitalize bold page-info'>
                     <span>total</span>
-                    <span className='blue'>$3,000</span>
+                    <span className='blue'>{formatPrice(total_amount)}</span>
                 </p>
                 <form onSubmit={checkoutSubmit}>
                     <div className='address billing-address'>
