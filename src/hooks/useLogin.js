@@ -34,14 +34,16 @@ const useLogin = () => {
             setPasswordErorr(true)
             return
         }
-        axios.post(`${BASE_URL}/login/`, {
-            username: email, password
+        axios.post(`${BASE_URL}/auth/login`, {
+            username: 'kminchelle',
+            password: '0lelplR',
         })
         .then((response) => {
             const {data} = response
             loginDispatch(data)
             setEmail("")
             setPassword("")
+            console.log(data);
             navigate(from, {replace: true})
         })
         .catch((error) => {
