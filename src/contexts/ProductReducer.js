@@ -21,10 +21,10 @@ const reducer = (state, action) => {
         }).slice(0, 5)
         const recommended_products = data.sort((a,b) => {
             return a.price - b.price
-        }).slice(0, 5)
+        }).slice(0, 6)
         const new_arrivals = data.sort((a,b) => {
             return b.stock - a.stock
-        }).slice(0, 5)
+        }).slice(0, 6)
         const top_ranked = data.sort((a,b) => {
             return b.rating - a.rating
         }).slice(0, 5)
