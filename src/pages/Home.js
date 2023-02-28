@@ -6,9 +6,20 @@ import FlashSales from '../components/FlashSales'
 import NewArrivals from '../components/NewArrivals'
 import TopRank from '../products/TopRank'
 import ClientReviews from '../components/ClientReviews'
+import Preloader from '../components/Preloader'
+import { useProductContext } from '../contexts/ProductContext'
 
 const Home = () => {
-  return (
+    const {products_loading} = useProductContext()
+
+    if (products_loading) {
+        return (
+            <Preloader>
+                <h1>Loading...</h1>
+            </Preloader>
+        )
+    }
+    return (
         <Wrapper>
             <div className='page-center'>
                 <Hero />
@@ -19,7 +30,7 @@ const Home = () => {
                 <ClientReviews />
             </div>
         </Wrapper>
-  )
+    )
 }
 
 const Wrapper = styled.section`

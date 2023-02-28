@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useProductContext } from '../contexts/ProductContext'
 import { useCartContext } from '../contexts/CartContext'
 import { formatPrice, formatStr } from '../helpers'
-
+import Preloader from '../components/Preloader'
 const Shop = () => {
 
     const {addToCart} = useCartContext()
@@ -17,11 +17,13 @@ const Shop = () => {
     if (products_loading) {
         return (
             <Wrapper>
-                <div className='no-products'>
-                    <h1>
-                        loading...
-                    </h1>
-                </div>
+                <Preloader>
+                    <div className='no-products'>
+                        <h1>
+                            loading...
+                        </h1>
+                    </div>
+                </Preloader>
             </Wrapper>
         )
     }

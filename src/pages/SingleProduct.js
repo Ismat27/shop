@@ -7,6 +7,7 @@ import { FiMinus, FiPlus } from 'react-icons/fi'
 // import { BsCurrencyDollar } from 'react-icons/bs'
 import { useCartContext } from '../contexts/CartContext'
 import { formatPrice } from '../helpers'
+import Preloader from '../components/Preloader'
 
 const SingleProduct = () => {
     const {addToCart} = useCartContext()
@@ -42,9 +43,9 @@ const SingleProduct = () => {
 
     if (single_product_loading) {
         return (
-            <Wrapper>
+            <Preloader>
                 <h3>product loading...</h3>
-            </Wrapper>
+            </Preloader>
         )
     }
 
