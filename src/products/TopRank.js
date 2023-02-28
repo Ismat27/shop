@@ -5,20 +5,9 @@ import { useProductContext } from "../contexts/ProductContext";
 
 const TopRank = () => {
   const { 
-    products_loading, 
     products_loading_error: error, 
     top_ranked 
   } = useProductContext()
-
-  if (products_loading) {
-    return (
-      <Wrapper>
-        <div className='no-products'>
-          <h3>loading...</h3>
-        </div>
-      </Wrapper>
-    )
-  }
 
   if (error) {
     return (
