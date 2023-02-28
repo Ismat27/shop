@@ -5,34 +5,24 @@ import CompHeader from './CompHeader'
 import { useProductContext } from '../contexts/ProductContext'
 
 const RecomProds = () => {
-    const {recommended_products, products_loading} = useProductContext()
-
-    if (products_loading) {
-        return (
-          <Wrapper>
-            <div className='no-products'>
-              <h3>loading...</h3>
-            </div>
-          </Wrapper>
-        )
-    }
+    const {recommended_products} = useProductContext()
     
-  return (
-    <Wrapper>
-        <CompHeader 
-            title={'recommended'}
-        />
-        <div className='bg-white products'>
-            {
-                recommended_products.map((item)=> {
-                    return (
-                        <RecomProdCard key={item.id} data={item} />
-                    )
-                })
-            }
-        </div>
-    </Wrapper>
-  )
+    return (
+        <Wrapper>
+            <CompHeader 
+                title={'recommended'}
+            />
+            <div className='bg-white products'>
+                {
+                    recommended_products.map((item)=> {
+                        return (
+                            <RecomProdCard key={item.id} data={item} />
+                        )
+                    })
+                }
+            </div>
+        </Wrapper>
+    )
 }
 
 const Wrapper = styled.div`
