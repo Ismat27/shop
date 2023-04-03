@@ -4,6 +4,7 @@ import { useProductContext } from '../contexts/ProductContext'
 import { useCartContext } from '../contexts/CartContext'
 import { formatPrice, formatStr } from '../helpers'
 import Preloader from '../components/Preloader'
+import { toast } from 'react-toastify'
 const Shop = () => {
 
     const {addToCart} = useCartContext()
@@ -74,7 +75,14 @@ const Shop = () => {
                                     </p>
                                     <button 
                                         className='add'
-                                        onClick={() => addToCart(id, product)}
+                                        onClick={() => {
+                                            addToCart(id, product)
+                                            toast.success('Product added to cart', {
+                                                hideProgressBar: false,
+                                                pauseOnHover: true,
+                                                progress: undefined,
+                                            })
+                                        }}
                                     >
                                     Add to bag
                                     </button>
