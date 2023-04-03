@@ -5,7 +5,8 @@ import {
     CLEAR_CART,
     INCREASE_ITEM,
     DECREASE_ITEM,
-    COUNT_TOTALS
+    COUNT_TOTALS,
+    CHECKOUT_CART
 } from './CartReducer'
 import reducer from './CartReducer'
 const Context = React.createContext()
@@ -45,6 +46,10 @@ const CartContext = ({children}) => {
         dispatch({type: INCREASE_ITEM, payload: itemId})
     }
 
+    const checkoutCart = () => {
+        dispatch({type: CHECKOUT_CART})
+    }
+
     useEffect(()=>{
         localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
         dispatch({type: COUNT_TOTALS})
@@ -57,7 +62,8 @@ const CartContext = ({children}) => {
                 addToCart,
                 removeFromCart,
                 decreaseItem,
-                increaseItem
+                increaseItem,
+                checkoutCart
             }}
         >
             {children}

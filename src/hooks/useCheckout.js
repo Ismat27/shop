@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useCartContext } from '../contexts/CartContext'
 
 const address = {
     first_name: '',
@@ -11,9 +12,17 @@ const address = {
 
 const useCheckout = () => {
 
+    const { checkoutCart } = useCartContext()
+
     const [billingAddress, setBillingAddress] = useState(address)
     const [shippingAddress, setShippingAddress] = useState(address)
     const [sameAddress, setSameAddress] = useState(false)
+
+    const [orderComplete, setOrderComplete] = useState(false)
+
+    const completeOrder = () => {
+        setOrderComplete(false)
+    }
 
     const editShippingAdrress = (event) => {
         const {name, value} = event.target
@@ -37,7 +46,8 @@ const useCheckout = () => {
 
     const checkoutSubmit = (event) => {
         event.preventDefault()
-        console.log(billingAddress, shippingAddress);
+        checkoutCart()
+        setOrderComplete(true)
     }
 
     return (
@@ -45,7 +55,8 @@ const useCheckout = () => {
             sameAddress, setSameAddress,
             billingAddress, editBillingAdrress,
             shippingAddress, editShippingAdrress,
-            checkoutSubmit
+            checkoutSubmit,
+            orderComplete, completeOrder
         }
     )
 }

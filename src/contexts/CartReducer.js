@@ -106,6 +106,15 @@ const reducer = (state, action) => {
             cartItems: tempItems
         }
     }
+    if (action.type === CHECKOUT_CART) {
+        // verify user info
+        // collect payment 
+        // send request to server
+        return {
+            ...state,
+            cartItems: []
+        }
+    }
 }
 
 export {

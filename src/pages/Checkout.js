@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import AddressFields from '../components/AddressFields'
@@ -6,6 +6,7 @@ import useCheckout from '../hooks/useCheckout'
 import { useAuthContext } from '../contexts/AuthContext'
 import { useCartContext } from '../contexts/CartContext'
 import { formatPrice } from '../helpers'
+import { OrderSuccessful } from '../components/order'
 const Checkout = () => {
     const {total_amount} = useCartContext()
     const navigate = useNavigate()
@@ -17,7 +18,8 @@ const Checkout = () => {
         sameAddress, setSameAddress,
         billingAddress, shippingAddress,
         editBillingAdrress, editShippingAdrress,
-        checkoutSubmit
+        checkoutSubmit,
+        orderComplete, completeOrder
     } = useCheckout()
 
     useEffect(() => {
@@ -29,52 +31,55 @@ const Checkout = () => {
     })
 
   return (
-    <Wrapper className='page-center'>
-        <p className='bold'>
-            <Link to={'/'} className='blue'>Home/</Link>
-            <Link to={'/cart'} className='blue'>Cart/</Link>
-            Checkout
-        </p>
-        <main>
-            <h1>Checkout</h1>
-            <div className='bg-white page-content'>
-                <p className='capitalize bold page-info'>
-                    <span>total</span>
-                    <span className='blue'>{formatPrice(total_amount)}</span>
-                </p>
-                <form onSubmit={checkoutSubmit}>
-                    <div className='address billing-address'>
-                        <h2 className='capitalize comp-header bold'>
-                            billing address
-                        </h2>
-                        <AddressFields data={billingAddress} editFunction={editBillingAdrress}/>
-                    </div>
-                    <div className='address shipping-address'>
-                        <h2 className='capitalize comp-header bold'>
-                            shipping address
-                        </h2>
-                        <div className='address-check'>
-                            <label>
-                                <input 
-                                    type={'checkbox'} 
-                                    value={sameAddress}
-                                    onChange={()=>setSameAddress(!sameAddress)}
-                                />
-                                same as billing address
-                            </label>
+    <>
+        <Wrapper className='page-center'>
+            <p className='bold'>
+                <Link to={'/'} className='blue'>Home/</Link>
+                <Link to={'/cart'} className='blue'>Cart/</Link>
+                Checkout
+            </p>
+            <main>
+                <h1>Checkout</h1>
+                <div className='bg-white page-content'>
+                    <p className='capitalize bold page-info'>
+                        <span>total</span>
+                        <span className='blue'>{formatPrice(total_amount)}</span>
+                    </p>
+                    <form onSubmit={checkoutSubmit}>
+                        <div className='address billing-address'>
+                            <h2 className='capitalize comp-header bold'>
+                                billing address
+                            </h2>
+                            <AddressFields data={billingAddress} editFunction={editBillingAdrress}/>
                         </div>
-                        <AddressFields data={shippingAddress} editFunction={editShippingAdrress}/>
-                    </div>
-                    <button className='btn bold submit-btn'>
-                        Confrim Order
-                    </button>
-                </form>
-                <p className='bold last-p'>
-                    <Link to={'/shop'} className='blue'>continue shopping</Link>
-                </p>
-            </div>
-        </main>
-    </Wrapper>
+                        <div className='address shipping-address'>
+                            <h2 className='capitalize comp-header bold'>
+                                shipping address
+                            </h2>
+                            <div className='address-check'>
+                                <label>
+                                    <input 
+                                        type={'checkbox'} 
+                                        value={sameAddress}
+                                        onChange={()=>setSameAddress(!sameAddress)}
+                                    />
+                                    same as billing address
+                                </label>
+                            </div>
+                            <AddressFields data={shippingAddress} editFunction={editShippingAdrress}/>
+                        </div>
+                        <button className='btn bold submit-btn'>
+                            Confrim Order
+                        </button>
+                    </form>
+                    <p className='bold last-p'>
+                        <Link to={'/shop'} className='blue'>continue shopping</Link>
+                    </p>
+                </div>
+            </main>
+        </Wrapper>
+        {orderComplete && <OrderSuccessful completeOrder={completeOrder} />}
+    </>
   )
 }
 
